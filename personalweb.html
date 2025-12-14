@@ -1,0 +1,1257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mgr. Michal Vavrečka, Ph.D. - Research Portfolio</title>
+    <!-- Google Fonts: Inter for a lightweight, modern look -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- CSS Variables --- */
+        :root {
+            --bg-body: #050505;       /* Pure Black/Dark */
+            --bg-nav: rgba(5, 5, 5, 0.95);
+            --bg-card: #111111;
+            --bg-card-hover: #1a1a1a;
+            --accent-orange: #ff7f00;
+            --text-main: #e0e0e0;
+            --text-muted: #888888;
+            --border-color: #222222;
+        }
+
+        /* --- Global Styles --- */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            font-weight: 300; /* Lightweight font */
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        a {
+            color: var(--text-main);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        a:hover {
+            color: var(--accent-orange);
+        }
+
+        /* --- Typography --- */
+        h1, h2, h3 {
+            font-weight: 400;
+            letter-spacing: -0.5px;
+            margin-top: 0;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 200;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            color: var(--accent-orange);
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+            margin-top: 80px; /* Spacing for sticky nav */
+        }
+
+        h3 {
+            font-size: 1.2rem;
+            color: var(--text-main);
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        strong {
+            font-weight: 600;
+            color: #fff;
+        }
+
+        /* --- Navigation Bar --- */
+        nav {
+            position: sticky;
+            top: 0;
+            width: 100%;
+            background-color: var(--bg-nav);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 1000;
+            padding: 15px 0;
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 25px;
+            padding: 0 20px;
+        }
+
+        .nav-link {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+            font-weight: 400;
+        }
+
+        .nav-link:hover {
+            color: var(--accent-orange);
+        }
+
+        /* --- Layout Container --- */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 40px 20px 100px 20px;
+        }
+
+        /* --- Header / Hero --- */
+        .hero {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            padding: 60px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .profile-img {
+            width: 220px;
+            height: 220px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 2px solid var(--accent-orange);
+            flex-shrink: 0;
+        }
+
+        .profile-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hero-text .subtitle {
+            color: var(--accent-orange);
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .contact-info {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-top: 15px;
+            line-height: 1.8;
+        }
+
+        .contact-info a {
+            color: var(--text-muted);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .contact-info a:hover {
+            color: var(--accent-orange);
+            border-color: var(--accent-orange);
+        }
+
+        /* --- Profile Bio --- */
+        .bio {
+            font-size: 1.1rem;
+            color: #ccc;
+            line-height: 1.8;
+            max-width: 900px;
+        }
+
+        /* --- Timeline (Split Layout) --- */
+        .split-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+        }
+
+        .timeline-entry {
+            margin-bottom: 30px;
+            padding-left: 20px;
+            border-left: 1px solid var(--accent-orange);
+        }
+
+        .date {
+            color: var(--accent-orange);
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .role {
+            font-weight: 600;
+            display: block;
+            color: #fff;
+        }
+
+        .institution {
+            color: var(--text-muted);
+            font-style: italic;
+        }
+
+        .description {
+            font-size: 0.9rem;
+            margin-top: 5px;
+            color: #aaa;
+        }
+
+        /* --- Cards (Labs, Projects, Software, Courses) --- */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 20px; /* UPDATED: More round */
+            overflow: hidden;
+            transition: transform 0.2s, background 0.2s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            background: var(--bg-card-hover);
+            border-color: #333;
+        }
+
+        /* Container for Videos */
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 */
+            height: 0;
+            background: #000;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Container for Images (Courses) - Same 16:9 ratio */
+        .image-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            height: 0;
+            background: #222; /* Placeholder background */
+            overflow: hidden;
+        }
+
+        .image-container img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Ensures image fills the frame cleanly */
+        }
+
+        .card-body {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-meta {
+            font-size: 0.75rem;
+            color: var(--accent-orange);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .card p {
+            font-size: 0.9rem;
+            color: #aaa;
+            margin-top: 10px;
+            margin-bottom: 0;
+            text-align: justify;
+        }
+
+        .course-link {
+            margin-top: auto;
+            display: inline-block;
+            color: var(--accent-orange);
+            font-size: 0.85rem;
+            font-weight: 600;
+            padding-top: 15px;
+        }
+
+        .course-link:hover {
+            text-decoration: underline;
+        }
+
+        /* --- Publications List --- */
+        .pub-section-title {
+            color: #fff;
+            font-size: 1.4rem;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            padding-left: 10px;
+            border-left: 4px solid var(--accent-orange);
+        }
+
+        .pub-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .pub-item {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 20px;
+        }
+
+        .pub-year {
+            font-weight: 600;
+            color: var(--accent-orange);
+            font-size: 0.9rem;
+            min-width: 50px;
+        }
+
+        .pub-content {
+            font-size: 0.95rem;
+            color: #ccc;
+        }
+
+        .pub-link {
+            color: var(--text-main);
+            text-decoration: none;
+            border-bottom: 1px dotted var(--text-muted);
+            transition: color 0.2s;
+        }
+
+        .pub-link:hover {
+            color: var(--accent-orange);
+            border-bottom-style: solid;
+        }
+
+        .pub-journal {
+            font-style: italic;
+            color: var(--text-muted);
+        }
+
+        /* --- Footer --- */
+        footer {
+            text-align: center;
+            padding: 50px 0;
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            border-top: 1px solid var(--border-color);
+            margin-top: 60px;
+        }
+
+        /* --- Responsive --- */
+        @media (max-width: 768px) {
+            .hero {
+                flex-direction: column;
+                text-align: center;
+            }
+            .split-grid {
+                grid-template-columns: 1fr;
+            }
+            .pub-item {
+                flex-direction: column;
+                gap: 5px;
+            }
+            nav {
+                overflow-x: auto;
+                white-space: nowrap;
+                justify-content: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="#profile" class="nav-link">Profile</a>
+            <a href="#experience" class="nav-link">Experience</a>
+            <a href="#labs" class="nav-link">Labs</a>
+            <a href="#projects" class="nav-link">Projects</a>
+            <a href="#software" class="nav-link">Software</a>
+            <a href="#courses" class="nav-link">Courses</a>
+            <a href="#publications" class="nav-link">Publications</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        
+        <!-- Header -->
+        <header class="hero" id="profile">
+            <div class="profile-img">
+                <img src="profile.jpg" alt="Michal Vavrečka">
+            </div>
+            <div class="hero-text">
+                <h1>Mgr. Michal Vavrečka, Ph.D.</h1>
+                <span class="subtitle">Developmental Robotics Researcher</span>
+                <div class="contact-info">
+                    Czech Institute of Informatics, Robotics and Cybernetics (CIIRC)<br>
+                    CTU in Prague, Jugoslávských partyzánů 1580/3, 160 00 Prague 6<br><br>
+                    <a href="mailto:michal.vavrecka@cvut.cz">michal.vavrecka@cvut.cz</a> | +420 608 661 977<br>
+                    <a href="https://michalvavrecka.github.io">michalvavrecka.github.io</a> | 
+                    <a href="#">GitHub</a> | <a href="#">LinkedIn</a>
+                </div>
+            </div>
+        </header>
+
+        <section>
+            <h2>Personal Profile</h2>
+            <p class="bio">
+                I am a cognitive scientist specializing in developmental robotics, artificial intelligence, and cognitive modeling. Since the beginning of my research in 2005, I have been dedicated to the principles of Artificial General Intelligence (AGI). During my psychology studies, I was already creating my own cognitive architectures. I continue this work by testing cognitive architectures in humanoid robots, which I train according to the principles of developmental robotics using reinforcement learning and intrinsic motivation, utilizing advanced robotic simulators that enable the automated creation of long task sequences (lifelong learning). In my research, I connect findings from psychology and neuroscience with technical applications in robotics.
+            </p>
+        </section>
+
+        <!-- Experience & Education -->
+        <section id="experience">
+            <div class="split-grid">
+                <div>
+                    <h2>Experience</h2>
+                    <div class="timeline-entry">
+                        <span class="date">04/2017 – present</span>
+                        <span class="role">Researcher</span>
+                        <span class="institution">Czech Technical University in Prague (CIIRC)</span>
+                        <div class="description">Development of algorithms for humanoid robots and research in human-robot interaction.</div>
+                    </div>
+                    <div class="timeline-entry">
+                        <span class="date">10/2022 – 10/2025</span>
+                        <span class="role">Researcher</span>
+                        <span class="institution">Comenius University Bratislava</span>
+                        <div class="description">Development of algorithms for humanoid robots (Faculty of Mathematics, Physics and Informatics).</div>
+                    </div>
+                    <div class="timeline-entry">
+                        <span class="date">01/2019 – 12/2021</span>
+                        <span class="role">Researcher</span>
+                        <span class="institution">Academy of Sciences of the Czech Republic</span>
+                        <div class="description">Institute of Physiology. Advanced EEG signal processing and research in spatial cognition.</div>
+                    </div>
+                    <div class="timeline-entry">
+                        <span class="date">04/2016 – 12/2018</span>
+                        <span class="role">Researcher</span>
+                        <span class="institution">Academy of Sciences of the Czech Republic</span>
+                        <div class="description">Institute of Computer Science. Advanced EEG signal processing and research in neuroscience.</div>
+                    </div>
+                    <div class="timeline-entry">
+                        <span class="date">07/2014 – 12/2015</span>
+                        <span class="role">Researcher</span>
+                        <span class="institution">National Institute of Mental Health, Klecany</span>
+                        <div class="description">Development of algorithms for advanced EEG signal processing and research in neuropsychology.</div>
+                    </div>
+                    <div class="timeline-entry">
+                        <span class="date">12/2012 – 06/2015</span>
+                        <span class="role">Postdoc</span>
+                        <span class="institution">University of South Bohemia in České Budějovice</span>
+                        <div class="description">Neuropsychological research in the field of emotions and EEG signal processing.</div>
+                    </div>
+                    <div class="timeline-entry">
+                        <span class="date">04/2008 – 12/2016</span>
+                        <span class="role">Assistant Professor</span>
+                        <span class="institution">Czech Technical University in Prague (FEE)</span>
+                        <div class="description">Research in spatial cognition, development of algorithms for EEG processing.</div>
+                    </div>
+                </div>
+
+                <div>
+                    <h2>Education & Stays</h2>
+                    <div class="timeline-entry">
+                        <span class="date">2005 – 2008</span>
+                        <span class="role">Ph.D., General Psychology</span>
+                        <span class="institution">Masaryk University, Brno</span>
+                        <div class="description">Dissertation: Application of cognitive semantics in the model of spatial relations representation.</div>
+                    </div>
+                    <div class="timeline-entry">
+                        <span class="date">1999 – 2005</span>
+                        <span class="role">Mgr. (M.A.), Psychology</span>
+                        <span class="institution">Masaryk University, Brno</span>
+                        <div class="description">Master’s Thesis: Methods of Human Intelligence Simulation.</div>
+                    </div>
+                    
+                    <h3 style="margin-top: 40px; color: var(--accent-orange);">Research Stays</h3>
+                    <ul style="list-style: none; padding: 0; color: #ccc; font-size: 0.95rem;">
+                        <li style="margin-bottom: 10px;"><strong>2017:</strong> Tokyo University of Agriculture and Technology, Japan</li>
+                        <li style="margin-bottom: 10px;"><strong>2014:</strong> Technical University of Berlin, Dept. of Biopsychology, Germany</li>
+                        <li style="margin-bottom: 10px;"><strong>2009:</strong> Comenius University Bratislava, Slovakia</li>
+                        <li style="margin-bottom: 10px;"><strong>2006:</strong> Comenius University Bratislava, Slovakia</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Founded Labs -->
+        <section id="labs">
+            <h2>Founded Laboratories</h2>
+            <div class="card-grid">
+                <div class="card">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/PLACEHOLDER_LAB1" allowfullscreen></iframe>
+                    </div>
+                    <div class="card-body">
+                        <span class="card-meta">2014</span>
+                        <h3>Incognite Lab</h3>
+                        <p>The laboratory focuses on research in developmental robotics. It develops software for training humanoid robots, such as myGym and PRAG.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/PLACEHOLDER_LAB2" allowfullscreen></iframe>
+                    </div>
+                    <div class="card-body">
+                        <span class="card-meta">2012</span>
+                        <h3>Neuropsychological Lab at USB</h3>
+                        <p>Open access laboratory equipped with 64-channel EEG and eye-tracker. The laboratory serves for administering experiments in cognitive and affective neuroscience.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/PLACEHOLDER_LAB3" allowfullscreen></iframe>
+                    </div>
+                    <div class="card-body">
+                        <span class="card-meta">2009</span>
+                        <h3>EEG Lab at FEE CTU</h3>
+                        <p>Laboratory designed for experiments focused primarily on spatial cognition.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects -->
+        <section id="projects">
+            <h2>Projects & Grants</h2>
+            <div class="card-grid">
+                
+                <!-- New Projects (From Wix) -->
+                <div class="card">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/PLACEHOLDER_RIPLEY" allowfullscreen></iframe>
+                    </div>
+                    <div class="card-body">
+                        <h3>Ripley Robot</h3>
+                        <p>A cognitive robotics project utilizing the Ripley robot, a 7-DOF manipulator with rich sensory capabilities (vision, audio, touch). The research focuses on grounding natural language semantics in perception and action, enabling collaborative tasks through spoken dialogue and interactive learning.</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/PLACEHOLDER_HOMUNCULUS" allowfullscreen></iframe>
+                    </div>
+                    <div class="card-body">
+                        <h3>Robotic Homunculus</h3>
+                        <p>Inspired by the biological somatosensory cortex, this project uses the iCub humanoid robot equipped with artificial skin. It investigates how the robot can autonomously learn a representation of its own body surface (a "robotic homunculus") through tactile stimulation and self-organizing maps.</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/PLACEHOLDER_SYMBOL" allowfullscreen></iframe>
+                    </div>
+                    <div class="card-body">
+                        <h3>Symbol Grounding</h3>
+                        <p>This fundamental research addresses the symbol grounding problem: how abstract symbols (like words) gain meaning through connection to physical world experiences. The project develops computational models that link linguistic inputs with sensorimotor data from robotic agents.</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/PLACEHOLDER_SPATIAL" allowfullscreen></iframe>
+                    </div>
+                    <div class="card-body">
+                        <h3>Spatial Cognition</h3>
+                        <p>An EEG-based study investigating how the human brain processes spatial information during navigation. The research differentiates between allocentric (world-centered) and egocentric (body-centered) reference frames using data from virtual environment tunnel tasks.</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/PLACEHOLDER_AFFECTIVE" allowfullscreen></iframe>
+                    </div>
+                    <div class="card-body">
+                        <h3>Affective Stimulation</h3>
+                        <p>Neuropsychological research focused on classifying human emotional states using EEG analysis. By presenting affective stimuli (such as IAPS images), the project aims to identify specific neural correlates and feature patterns associated with different emotional responses.</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/PLACEHOLDER_VRLONG" allowfullscreen></iframe>
+                    </div>
+                    <div class="card-body">
+                        <h3>VR Long Term Stay</h3>
+                        <p>Research conducted in the context of isolation experiments (analogous to space missions). It explores the psychological effects of long-term confinement and evaluates the effectiveness of Virtual Reality environments as a countermeasure for maintaining cognitive health and well-being.</p>
+                    </div>
+                </div>
+
+                <!-- Existing Projects -->
+                <div class="card">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/PLACEHOLDER_P1" allowfullscreen></iframe>
+                    </div>
+                    <div class="card-body">
+                        <span class="card-meta">2023-2025</span>
+                        <h3>iChores</h3>
+                        <p>Creation of an architecture for a humanoid robot enabling control via language instructions and gestures.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/PLACEHOLDER_P2" allowfullscreen></iframe>
+                    </div>
+                    <div class="card-body">
+                        <span class="card-meta">2022-2025</span>
+                        <h3>TERAIS</h3>
+                        <p>Project focused on twinning cooperation with the University of Hamburg and IIT Genoa in the field of cognitive robotics.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/PLACEHOLDER_P3" allowfullscreen></iframe>
+                    </div>
+                    <div class="card-body">
+                        <span class="card-meta">2021-2024</span>
+                        <h3>MIRRACLE</h3>
+                        <p>Research on multimodal representations of robotic actions and tasks applied to imitation learning.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/PLACEHOLDER_P4" allowfullscreen></iframe>
+                    </div>
+                    <div class="card-body">
+                        <span class="card-meta">2019-2021</span>
+                        <h3>HUMR</h3>
+                        <p>Using the humanoid robot Pepper for activation and cognitive training of seniors.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/PLACEHOLDER_P5" allowfullscreen></iframe>
+                    </div>
+                    <div class="card-body">
+                        <span class="card-meta">2019-2021</span>
+                        <h3>Tradr</h3>
+                        <p>Rescue robot for deployment in difficult conditions.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/PLACEHOLDER_P6" allowfullscreen></iframe>
+                    </div>
+                    <div class="card-body">
+                        <span class="card-meta">2012-2015</span>
+                        <h3>CloPeMa</h3>
+                        <p>Clothes recognition and folding using a dual-arm robot.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Software -->
+        <section id="software">
+            <h2>Software</h2>
+            <div class="card-grid">
+                
+                <div class="card">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/PLACEHOLDER_BIOLOID" allowfullscreen></iframe>
+                    </div>
+                    <div class="card-body">
+                        <h3>Bioloid Toolbox</h3>
+                        <p>A specialized software control library (Matlab/Python) designed for the Robotis Bioloid robot kits. It provides an interface for researchers and students to program complex motor sequences and behaviors for modular robots.</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/PLACEHOLDER_NEURO" allowfullscreen></iframe>
+                    </div>
+                    <div class="card-body">
+                        <h3>Neurofeedback Software</h3>
+                        <p>Custom-developed software applications for EEG-based neurofeedback. This tool allows users to visualize their brain activity in real-time and train self-regulation of brain functions through visual or auditory feedback loops.</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/PLACEHOLDER_S1" allowfullscreen></iframe>
+                    </div>
+                    <div class="card-body">
+                        <h3>PRAG</h3>
+                        <p>Procedural task generator for robotic tasks with automatic training.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/PLACEHOLDER_S2" allowfullscreen></iframe>
+                    </div>
+                    <div class="card-body">
+                        <h3>myGym</h3>
+                        <p>Robotic simulator for training tasks using multi-policy algorithms.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/PLACEHOLDER_S3" allowfullscreen></iframe>
+                    </div>
+                    <div class="card-body">
+                        <h3>iChores</h3>
+                        <p>Controlling the Tiago humanoid robot using language and gestures.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/PLACEHOLDER_S4" allowfullscreen></iframe>
+                    </div>
+                    <div class="card-body">
+                        <h3>NicoIK</h3>
+                        <p>Inverse kinematics and automatic grasping for the Nico humanoid robot.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/PLACEHOLDER_S5" allowfullscreen></iframe>
+                    </div>
+                    <div class="card-body">
+                        <h3>VR Bone Assembly 2.0</h3>
+                        <p>Educational software for medical students.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Courses -->
+        <section id="courses">
+            <h2>Courses</h2>
+            <div class="card-grid">
+                
+                <div class="card">
+                    <div class="image-container">
+                        <img src="course_cogsci.jpg" alt="Cognitive Science">
+                    </div>
+                    <div class="card-body">
+                        <h3>Cognitive Science</h3>
+                        <p>An introduction to the interdisciplinary study of mind and intelligence, embracing philosophy, psychology, artificial intelligence, neuroscience, linguistics, and anthropology.</p>
+                        <a href="https://kognice.wixsite.com/vavrecka/copy-of-cognitive-systems" target="_blank" class="course-link">View Course Page &rarr;</a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="image-container">
+                        <img src="course_meta.jpg" alt="Metacognition">
+                    </div>
+                    <div class="card-body">
+                        <h3>Metacognition</h3>
+                        <p>Exploration of "thinking about thinking", including knowledge about when and how to use particular strategies for learning or problem-solving.</p>
+                        <a href="https://kognice.wixsite.com/vavrecka/copy-of-neuropsychology" target="_blank" class="course-link">View Course Page &rarr;</a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="image-container">
+                        <img src="course_cogsys.jpg" alt="Cognitive Systems">
+                    </div>
+                    <div class="card-body">
+                        <h3>Cognitive Systems</h3>
+                        <p>Focuses on systems that can perceive, reason, learn, and interact with the environment, often drawing inspiration from biological cognitive systems.</p>
+                        <a href="https://kognice.wixsite.com/vavrecka/copy-of-autonomous-numeric-system" target="_blank" class="course-link">View Course Page &rarr;</a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="image-container">
+                        <img src="course_neuropsych.jpg" alt="Neuropsychology">
+                    </div>
+                    <div class="card-body">
+                        <h3>Neuropsychology</h3>
+                        <p>Study of the structure and function of the brain as they relate to specific psychological processes and behaviors.</p>
+                        <a href="https://kognice.wixsite.com/vavrecka/copy-of-introduction-to-cognitive-s" target="_blank" class="course-link">View Course Page &rarr;</a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="image-container">
+                        <img src="course_neuroinfo.jpg" alt="Neuroinformatics">
+                    </div>
+                    <div class="card-body">
+                        <h3>Neuroinformatics</h3>
+                        <p>Application of computational models and analytical tools to neuroscience data, bridging the gap between neuroscience and information science.</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="image-container">
+                        <img src="course_psychometrics.jpg" alt="Psychometrics">
+                    </div>
+                    <div class="card-body">
+                        <h3>Psychometrics</h3>
+                        <p>The field of study concerned with the theory and technique of psychological measurement, including the measurement of knowledge, abilities, attitudes, and personality traits.</p>
+                        <a href="https://kognice.wixsite.com/vavrecka/copy-of-metacognition" target="_blank" class="course-link">View Course Page &rarr;</a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="image-container">
+                        <img src="course_stats.jpg" alt="Statistics">
+                    </div>
+                    <div class="card-body">
+                        <h3>Statistics</h3>
+                        <p>Statistical methods and analysis techniques applied to research data in cognitive science and psychology.</p>
+                        <a href="https://kognice.wixsite.com/vavrecka/copy-of-psychometrics" target="_blank" class="course-link">View Course Page &rarr;</a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Publications -->
+        <section id="publications">
+            <h2>List of Publications</h2>
+
+            <div class="pub-section-title">Journal Articles</div>
+            <ul class="pub-list">
+                <li class="pub-item">
+                    <div class="pub-year">2025</div>
+                    <div class="pub-content">
+                        <a class="pub-link" href="https://scholar.google.com/scholar?q=Will%20multimodal%20large%20language%20models%20ever%20achieve%20deep%20understanding%20of%20the%20world%3F%20Vavrecka" target="_blank">
+                            Farkaš, I., <strong>Vavrečka, M.</strong>, & Wermter, S. Will multimodal large language models ever achieve deep understanding of the world?
+                        </a> <span class="pub-journal">Frontiers in Systems Neuroscience, 19, 1683133.</span>
+                    </div>
+                </li>
+                <li class="pub-item">
+                    <div class="pub-year">2018</div>
+                    <div class="pub-content">
+                        <a class="pub-link" href="https://scholar.google.com/scholar?q=Mapping%20language%20to%20vision%20in%20a%20real-world%20robotic%20scenario%20Vavrecka" target="_blank">
+                            Štěpánová, K., Klein, F. B., Cangelosi, A., & <strong>Vavrečka, M.</strong> Mapping language to vision in a real-world robotic scenario.
+                        </a> <span class="pub-journal">IEEE Transactions on Cognitive and Developmental Systems, 10(3), 784-794.</span>
+                    </div>
+                </li>
+                <li class="pub-item">
+                    <div class="pub-year">2017</div>
+                    <div class="pub-content">
+                        <a class="pub-link" href="https://scholar.google.com/scholar?q=Robotic%20homunculus%3A%20Learning%20of%20artificial%20skin%20representation%20in%20a%20humanoid%20robot%20Vavrecka" target="_blank">
+                            Hoffmann, M., Straka, Z., Farkas, I., <strong>Vavrecka, M.</strong> & Metta, G. Robotic homunculus: Learning of artificial skin representation in a humanoid robot motivated by primary somatosensory cortex.
+                        </a> <span class="pub-journal">IEEE Transactions on Cognitive and Developmental Systems.</span>
+                    </div>
+                </li>
+                <li class="pub-item">
+                    <div class="pub-year">2017</div>
+                    <div class="pub-content">
+                        <a class="pub-link" href="https://scholar.google.com/scholar?q=%C3%9Avod%20do%20aproxim%C3%A1ln%C3%ADho%20numerick%C3%A9ho%20syst%C3%A9mu%20Vavrecka" target="_blank">
+                            Plassová, M., Stuchlíková, I., <strong>Vavrečka, M.</strong> Úvod do aproximálního numerického systému.
+                        </a> <span class="pub-journal">Pedagogika, 67 (2).</span>
+                    </div>
+                </li>
+                <li class="pub-item">
+                    <div class="pub-year">2016</div>
+                    <div class="pub-content">
+                        <a class="pub-link" href="https://scholar.google.com/scholar?q=Estimating%20number%20of%20components%20in%20Gaussian%20mixture%20model%20Vavrecka" target="_blank">
+                            Štěpánová K., <strong>Vavrečka M.</strong> Estimating number of components in Gaussian mixture model using combination of greedy and merging algorithm.
+                        </a> <span class="pub-journal">Pattern Analysis and Applications.</span>
+                    </div>
+                </li>
+                <li class="pub-item">
+                    <div class="pub-year">2016</div>
+                    <div class="pub-content">
+                        <a class="pub-link" href="https://scholar.google.com/scholar?q=Kognice%20a%20hemodynamika%20po%20karotick%C3%A9%20endarterektomii%20Vavrecka" target="_blank">
+                            Fiedler, J., Mrhálek, T., <strong>Vavrečka, M.</strong>, et al. Kognice a hemodynamika po karotické endarterektomii pro asymptomatickou stenózu.
+                        </a> <span class="pub-journal">Česká a slovenská neurologie a neurochirurgie, 79/112(2), 201–206.</span>
+                    </div>
+                </li>
+                <li class="pub-item">
+                    <div class="pub-year">2015</div>
+                    <div class="pub-content">
+                        <a class="pub-link" href="https://scholar.google.com/scholar?q=Cognitive%20Outcome%20and%20Hemodynamic%20Changes%203%20months%20after%20Carotid%20Endarterectomy%20Vavrecka" target="_blank">
+                            Fiedler, J., ... <strong>Vavrečka, M.</strong>, et al. Cognitive Outcome and Hemodynamic Changes 3 months after Carotid Endarterectomy.
+                        </a> <span class="pub-journal">Journal of Neurosurgery, 123(2).</span>
+                    </div>
+                </li>
+                <li class="pub-item">
+                    <div class="pub-year">2014</div>
+                    <div class="pub-content">
+                        <a class="pub-link" href="https://scholar.google.com/scholar?q=A%20multimodal%20connectionist%20architecture%20for%20unsupervised%20grounding%20of%20spatial%20language%20Vavrecka" target="_blank">
+                            <strong>Vavrečka, M.</strong>, & Farkaš, I. A multimodal connectionist architecture for unsupervised grounding of spatial language.
+                        </a> <span class="pub-journal">Cognitive Computation, 6(1), 101-112.</span>
+                    </div>
+                </li>
+                <li class="pub-item">
+                    <div class="pub-year">2012</div>
+                    <div class="pub-content">
+                        <a class="pub-link" href="https://scholar.google.com/scholar?q=Frames%20of%20reference%20and%20their%20neural%20correlates%20within%20navigation%20in%20a%203D%20environment%20Vavrecka" target="_blank">
+                            <strong>Vavrečka, M.</strong>, Gerla, V., Lhotská, L., & Brunovský, M. Frames of reference and their neural correlates within navigation in a 3D environment.
+                        </a> <span class="pub-journal">Visual Neuroscience, 29(03), 183-191.</span>
+                    </div>
+                </li>
+                <li class="pub-item">
+                    <div class="pub-year">2012</div>
+                    <div class="pub-content">
+                        <a class="pub-link" href="https://scholar.google.com/scholar?q=Odli%C5%A1nosti%20u%C5%BE%C3%ADv%C3%A1n%C3%AD%20referen%C4%8Dn%C3%ADch%20r%C3%A1mc%C5%AF%20b%C4%9Bhem%20orientace%20v%203D%20prostoru%20Vavrecka" target="_blank">
+                            <strong>Vavrečka, M.</strong>, & Lhotská, L. Odlišnosti užívání referenčních rámců během orientace v 3D prostoru.
+                        </a> <span class="pub-journal">Linguistica ONLINE, 14, 95-100.</span>
+                    </div>
+                </li>
+                <li class="pub-item">
+                    <div class="pub-year">2012</div>
+                    <div class="pub-content">
+                        <a class="pub-link" href="https://scholar.google.com/scholar?q=The%20alteration%20of%20reference%20frames%20in%20a%20vertical%20navigation%20Vavrecka" target="_blank">
+                            <strong>Vavrečka, M.</strong>, & Lhotská, L. The alteration of reference frames in a vertical navigation.
+                        </a> <span class="pub-journal">Cognitive Processing, Springer Berlin.</span>
+                    </div>
+                </li>
+                <li class="pub-item">
+                    <div class="pub-year">2012</div>
+                    <div class="pub-content">
+                        <a class="pub-link" href="https://scholar.google.com/scholar?q=The%20inter-individual%20differences%20and%20the%20test%E2%80%93retest%20reliability%20of%20a%20EEG%20signal%20Vavrecka" target="_blank">
+                            <strong>Vavrečka, M.</strong>, Rosset, B., & Lhotská, L. The inter-individual differences and the test–retest reliability of a EEG signal.
+                        </a> <span class="pub-journal">Clinical Neurophysiology, 123(3).</span>
+                    </div>
+                </li>
+                <li class="pub-item">
+                    <div class="pub-year">2011</div>
+                    <div class="pub-content">
+                        <a class="pub-link" href="https://scholar.google.com/scholar?q=Event%20related%20spectral%20perturbations%20within%203D%20navigation%20task%20Vavrecka" target="_blank">
+                            <strong>Vavrečka, M.</strong>, & Lhotská, L. Event related spectral perturbations within 3D navigation task.
+                        </a> <span class="pub-journal">Activitas Nervosa Superior Rediviva, 53.</span>
+                    </div>
+                </li>
+                <li class="pub-item">
+                    <div class="pub-year">2009</div>
+                    <div class="pub-content">
+                        <a class="pub-link" href="https://scholar.google.com/scholar?q=The%20neural%20correlates%20of%20spatial%20reference%20frames%20processing%20Vavrecka" target="_blank">
+                            <strong>Vavrečka, M.</strong> The neural correlates of spatial reference frames processing.
+                        </a> <span class="pub-journal">Cognitive Processing, 10:2, 342-345.</span>
+                    </div>
+                </li>
+            </ul>
+
+            <div class="pub-section-title">Conference Papers</div>
+            <ul class="pub-list">
+                <li class="pub-item">
+                    <div class="pub-year">2025</div>
+                    <div class="pub-content">
+                        <a class="pub-link" href="https://scholar.google.com/scholar?q=Are%20Multimodal%20Signals%20Synchronous%3F%20Vavrecka" target="_blank">
+                            Zamrazilova, K., <strong>Vavrecka, M.</strong>, et al. “Are Multimodal Signals Synchronous?”: Temporal Relation of Declarative Gestures and Language Instructions in Human Robot Interaction.
+                        </a> <span class="pub-journal">2025 IEEE International Conference on Development and Learning (ICDL), 1-6.</span>
+                    </div>
+                </li>
+                <li class="pub-item">
+                    <div class="pub-year">2025</div>
+                    <div class="pub-content">
+                        <a class="pub-link" href="https://scholar.google.com/scholar?q=PRAG%3A%20Procedural%20Action%20Sequence%20Symbolic%20Generator%20Vavrecka" target="_blank">
+                            Škoviera, R., <strong>Vavrečka, M.</strong>, et al. PRAG: Procedural Action Sequence Symbolic Generator as a Mechanism for Autonomous Learning.
+                        </a> <span class="pub-journal">2025 IEEE International Conference on Development and Learning (ICDL), 1-8.</span>
+                    </div>
+                </li>
+                <li class="pub-item">
+                    <div class="pub-year">2025</div>
+                    <div class="pub-content">
+                        <a class="pub-link" href="https://scholar.google.com/scholar?q=Robotic%20Calibration%20Based%20on%20Haptic%20Feedback%20Improves%20Sim-to-Real%20Transfer%20Vavrecka" target="_blank">
+                            Gavura, J., <strong>Vavrečka, M.</strong>, Farkaš, I., & Gäde, C. Robotic Calibration Based on Haptic Feedback Improves Sim-to-Real Transfer.
+                        </a> <span class="pub-journal">International Conference on Artificial Neural Networks (ICANN), 136-148.</span>
+                    </div>
+                </li>
+                <li class="pub-item">
+                    <div class="pub-year">2025</div>
+                    <div class="pub-content">
+                        <a class="pub-link" href="https://scholar.google.com/scholar?q=Examining%20the%20legibility%20of%20humanoid%20robot%20arm%20movements%20Vavrecka" target="_blank">
+                            Lúčny, A., ... & <strong>Vavrečka, M.</strong> Examining the legibility of humanoid robot arm movements in a pointing task.
+                        </a> <span class="pub-journal">arXiv preprint arXiv:2508.05104.</span>
+                    </div>
+                </li>
+                <li class="pub-item">
+                    <div class="pub-year">2025</div>
+                    <div class="pub-content">
+                        <a class="pub-link" href="https://scholar.google.com/scholar?q=PRAG%3A%20Procedural%20Action%20Generator%20Vavrecka" target="_blank">
+                            <strong>Vavrecka, M.</strong>, Skoviera, R., Sejnova, G., & Stepanova, K. PRAG: Procedural Action Generator.
+                        </a> <span class="pub-journal">arXiv preprint arXiv:2507.09167.</span>
+                    </div>
+                </li>
+                <li class="pub-item">
+                    <div class="pub-year">2024</div>
+                    <div class="pub-content">
+                        <a class="pub-link" href="https://scholar.google.com/scholar?q=Bridging%20language%2C%20vision%20and%20action%3A%20Multimodal%20VAEs%20Vavrecka" target="_blank">
+                            Sejnova, G., <strong>Vavrecka, M.</strong>, & Stepanova, K. Bridging language, vision and action: Multimodal VAEs in robotic manipulation tasks.
+                        </a> <span class="pub-journal">2024 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS).</span>
+                    </div>
+                </li>
+                <li class="pub-item">
+                    <div class="pub-year">2024</div>
+                    <div class="pub-content">
+                        <a class="pub-link" href="https://scholar.google.com/scholar?q=Modular%20Reinforcement%20Learning%20In%20Long-Horizon%20Manipulation%20Tasks%20Vavrecka" target="_blank">
+                            <strong>Vavrecka, M.</strong>, Kriz, J., Sokovnin, N., & Sejnova, G. Modular Reinforcement Learning In Long-Horizon Manipulation Tasks.
+                        </a> <span class="pub-journal">International Conference on Artificial Neural Networks (ICANN), 299-312.</span>
+                    </div>
+                </li>
+                <li class="pub-item">
+                    <div class="pub-year">2024</div>
+                    <div class="pub-content">
+                        <a class="pub-link" href="https://scholar.google.com/scholar?q=Action%20Recognition%20System%20Integrating%20Motion%20and%20Object%20Detection%20Vavrecka" target="_blank">
+                            Ostapenko, A., & <strong>Vavrecka, M.</strong> Action Recognition System Integrating Motion and Object Detection.
+                        </a> <span class="pub-journal">International Conference on Artificial Neural Networks (ICANN), 259-269.</span>
+                    </div>
+                </li>
+                <li class="pub-item">
+                    <div class="pub-year">2024</div>
+                    <div class="pub-content">
+                        <a class="pub-link" href="https://scholar.google.com/scholar?q=Adaptive%20compression%20of%20the%20latent%20space%20in%20variational%20autoencoders%20Vavrecka" target="_blank">
+                            Sejnova, G., <strong>Vavrecka, M.</strong>, & Stepanova, K. Adaptive compression of the latent space in variational autoencoders.
+                        </a> <span class="pub-journal">International Conference on Artificial Neural Networks (ICANN), 89-101.</span>
+                    </div>
+                </li>
+                <li class="pub-item">
+                    <div class="pub-year">2023</div>
+                    <div class="pub-content">
+                        <a class="pub-link" href="https://scholar.google.com/scholar?q=Native%20Czech%20speakers%20consider%20English-speaking%20robots%20more%20intelligent%20Vavrecka" target="_blank">
+                            Sienkiewicz, B., Sejnova, G., Gajewski, P., <strong>Vavrecka, M.</strong>, & Indurkhya, B. Native Czech speakers consider English-speaking robots more intelligent.
+                        </a> <span class="pub-journal">Proceedings of the 11th International Conference on Human-Agent Interaction (HAI), 362-364.</span>
+                    </div>
+                </li>
+                <li class="pub-item">
+                    <div class="pub-year">2023</div>
+                    <div class="pub-content">
+                        <a class="pub-link" href="https://scholar.google.com/scholar?q=How%20language%20of%20interaction%20affects%20the%20user%20perception%20of%20a%20robot%20Vavrecka" target="_blank">
+                            Sienkiewicz, B., ... <strong>Vavrecka, M.</strong>, & Indurkhya, B. How language of interaction affects the user perception of a robot.
+                        </a> <span class="pub-journal">International Conference on Social Robotics (ICSR), 308-321.</span>
+                    </div>
+                </li>
+                <li class="pub-item">
+                    <div class="pub-year">2022</div>
+                    <div class="pub-content">
+                        <a class="pub-link" href="https://scholar.google.com/scholar?q=Personified%20Robotic%20Chatbot%20Based%20On%20Compositional%20Dialogues%20Vavrecka" target="_blank">
+                            <strong>Vavrecka, M.</strong>, Sejnova, G., & Schimperk, P. Personified Robotic Chatbot Based On Compositional Dialogues.
+                        </a> <span class="pub-journal">International Conference on Interactive Media, Smart Systems and Emerging Technologies (IMET), 1-2.</span>
+                    </div>
+                </li>
+                <li class="pub-item">
+                    <div class="pub-year">2021</div>
+                    <div class="pub-content">
+                        <a class="pub-link" href="https://scholar.google.com/scholar?q=myGym%3A%20Modular%20toolkit%20for%20visuo-motor%20robotic%20tasks%20Vavrecka" target="_blank">
+                            <strong>Vavrecka, M.</strong>, Sokovnin, N., Mejdrechova, M., & Sejnova, G. myGym: Modular toolkit for visuo-motor robotic tasks.
+                        </a> <span class="pub-journal">2021 IEEE 33rd International Conference on Tools with Artificial Intelligence (ICTAI), 279-283.</span>
+                    </div>
+                </li>
+                <li class="pub-item">
+                    <div class="pub-year">2021</div>
+                    <div class="pub-content">
+                        <a class="pub-link" href="https://scholar.google.com/scholar?q=Reward%20Redistribution%20for%20Reinforcement%20Learning%20Vavrecka" target="_blank">
+                            Sejnova, G., Mejdrechova, M., ... & <strong>Vavrecka, M.</strong> Reward Redistribution for Reinforcement Learning of Dynamic Nonprehensile Manipulation.
+                        </a> <span class="pub-journal">2021 7th International Conference on Control, Automation and Robotics (ICCAR), 326-331.</span>
+                    </div>
+                </li>
+                <li class="pub-item">
+                    <div class="pub-year">2020</div>
+                    <div class="pub-content">
+                        <a class="pub-link" href="https://scholar.google.com/scholar?q=A%20Learning%20Based%20Approach%20for%20Planning%20with%20Safe%20Actions%20Vavrecka" target="_blank">
+                            Niyogi, R., Sharma, S., <strong>Vavrecka, M.</strong>, & Milani, A. A Learning Based Approach for Planning with Safe Actions.
+                        </a> <span class="pub-journal">Computational Science and Its Applications – ICCSA 2020, 93-105.</span>
+                    </div>
+                </li>
+                <li class="pub-item">
+                    <div class="pub-year">2019</div>
+                    <div class="pub-content">
+                        <a class="pub-link" href="https://scholar.google.com/scholar?q=Exploring%20logical%20consistency%20and%20viewport%20sensitivity%20Vavrecka" target="_blank">
+                            Sejnova, G., <strong>Vavrecka, M.</strong>, Tesar, M., & Skoviera, R. Exploring logical consistency and viewport sensitivity in compositional VQA models.
+                        </a> <span class="pub-journal">2019 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS), 2108-2113.</span>
+                    </div>
+                </li>
+                <li class="pub-item">
+                    <div class="pub-year">2018</div>
+                    <div class="pub-content">
+                        <a class="pub-link" href="https://scholar.google.com/scholar?q=Compositional%20models%20for%20VQA%3A%20Can%20neural%20module%20networks%20really%20count%3F%20Vavrecka" target="_blank">
+                            Sejnova, G., Tesar, M., & <strong>Vavrecka, M.</strong> Compositional models for VQA: Can neural module networks really count?
+                        </a> <span class="pub-journal">Procedia computer science, 145, 481-487.</span>
+                    </div>
+                </li>
+                <li class="pub-item">
+                    <div class="pub-year">2016</div>
+                    <div class="pub-content">
+                        <a class="pub-link" href="https://scholar.google.com/scholar?q=Approximate%20number%20system%20in%20children%20Vavrecka" target="_blank">
+                            Plassová, M., Tesař, M., <strong>Vavrečka, M.</strong>, & Valuchová, K. Approximate number system in children.
+                        </a> <span class="pub-journal">Proceedings of the 6th Biannual CER Comparative European Research Conference, 182-187.</span>
+                    </div>
+                </li>
+                <li class="pub-item">
+                    <div class="pub-year">2013</div>
+                    <div class="pub-content">
+                        <a class="pub-link" href="https://scholar.google.com/scholar?q=Vliv%20kontextu%20na%20orientaci%20v%20prostoru%20Vavrecka" target="_blank">
+                            <strong>Vavrečka, M.</strong>, Kužílek, J., & Lhotská, L. Vliv kontextu na orientaci v prostoru.
+                        </a> <span class="pub-journal">Kognícia a umely život XIII, 279-285.</span>
+                    </div>
+                </li>
+                <li class="pub-item">
+                    <div class="pub-year">2013</div>
+                    <div class="pub-content">
+                        <a class="pub-link" href="https://scholar.google.com/scholar?q=EEG%20Feature%20Selection%20Based%20on%20Time%20Series%20Classification%20Vavrecka" target="_blank">
+                            <strong>Vavrečka, M.</strong>, & Lhotská, L. EEG Feature Selection Based on Time Series Classification.
+                        </a> <span class="pub-journal">Lecture Notes in Computer Science (LNCS), vol. 7988, 520-527.</span>
+                    </div>
+                </li>
+                <li class="pub-item">
+                    <div class="pub-year">2012</div>
+                    <div class="pub-content">
+                        <a class="pub-link" href="https://scholar.google.com/scholar?q=Unsupervised%20Visual%20and%20Lexical%20Binding%20Vavrecka" target="_blank">
+                            <strong>Vavrečka, M.</strong>, & Farkaš, I. Unsupervised Visual and Lexical Binding.
+                        </a> <span class="pub-journal">Proceedings of International Conference on Cognitive Systems.</span>
+                    </div>
+                </li>
+                <li class="pub-item">
+                    <div class="pub-year">2011</div>
+                    <div class="pub-content">
+                        <a class="pub-link" href="https://scholar.google.com/scholar?q=Bio-inspired%20Model%20of%20Spatial%20Cognition%20Vavrecka" target="_blank">
+                            <strong>Vavrečka, M.</strong>, Farkaš, I., & Lhotská, L. Bio-inspired Model of Spatial Cognition.
+                        </a> <span class="pub-journal">Lecture Notes in Computer Science 7062 (LNCS), 443-450.</span>
+                    </div>
+                </li>
+                <li class="pub-item">
+                    <div class="pub-year">2011</div>
+                    <div class="pub-content">
+                        <a class="pub-link" href="https://scholar.google.com/scholar?q=EEG%20analysis%20of%20the%20navigation%20strategies%20in%20a%203D%20tunnel%20task%20Vavrecka" target="_blank">
+                            <strong>Vavrečka, M.</strong>, & Lhotská, L. EEG analysis of the navigation strategies in a 3D tunnel task.
+                        </a> <span class="pub-journal">Lecture Notes in Computer Science 7062 (LNCS), 388-395.</span>
+                    </div>
+                </li>
+                <li class="pub-item">
+                    <div class="pub-year">2011</div>
+                    <div class="pub-content">
+                        <a class="pub-link" href="https://scholar.google.com/scholar?q=Visually%20driven%20homonyms%20disambiguation%20Vavrecka" target="_blank">
+                            <strong>Vavrečka, M.</strong> Visually driven homonyms disambiguation.
+                        </a> <span class="pub-journal">Kognice a umělý život XI, 293-299.</span>
+                    </div>
+                </li>
+                <li class="pub-item">
+                    <div class="pub-year">2011</div>
+                    <div class="pub-content">
+                        <a class="pub-link" href="https://scholar.google.com/scholar?q=Unsupervised%20Grounding%20of%20Spatial%20Relations%20Vavrecka" target="_blank">
+                            <strong>Vavrečka, M.</strong>, & Farkaš, I. Unsupervised Grounding of Spatial Relations.
+                        </a> <span class="pub-journal">Proceedings of the Third European Conference on Cognitive Science, Bulgaria.</span>
+                    </div>
+                </li>
+                <li class="pub-item">
+                    <div class="pub-year">2010</div>
+                    <div class="pub-content">
+                        <a class="pub-link" href="https://scholar.google.com/scholar?q=Unsupervised%20model%20for%20grounding%20multimodal%20representations%20Vavrecka" target="_blank">
+                            <strong>Vavrečka, M.</strong>, & Farkaš, I. Unsupervised model for grounding multimodal representations.
+                        </a> <span class="pub-journal">Third EuCogII Members Conference, Mallorca.</span>
+                    </div>
+                </li>
+                <li class="pub-item">
+                    <div class="pub-year">2010</div>
+                    <div class="pub-content">
+                        <a class="pub-link" href="https://scholar.google.com/scholar?q=Classification%20of%20the%20EEG%20feature%20components%20Vavrecka" target="_blank">
+                            <strong>Vavrečka, M.</strong>, Kužílek J., & Lhotská, L. Classification of the EEG feature components.
+                        </a> <span class="pub-journal">10th International Conference on Information Technology and Applications in Biomedicine.</span>
+                    </div>
+                </li>
+                <li class="pub-item">
+                    <div class="pub-year">2010</div>
+                    <div class="pub-content">
+                        <a class="pub-link" href="https://scholar.google.com/scholar?q=Representation%20of%20objects%20in%20space%20based%20on%20two%20visual%20pathways%20Vavrecka" target="_blank">
+                            <strong>Vavrečka, M.</strong> Representation of objects in space based on two visual pathways.
+                        </a> <span class="pub-journal">Kognice a umělý život X, 403-409.</span>
+                    </div>
+                </li>
+                <li class="pub-item">
+                    <div class="pub-year">2009</div>
+                    <div class="pub-content">
+                        <a class="pub-link" href="https://scholar.google.com/scholar?q=Classification%20of%20the%20emotional%20states%20based%20on%20the%20EEG%20signal%20processing%20Vavrecka" target="_blank">
+                            Macaš, M., <strong>Vavrečka, M.</strong>, Gerla V., & Lhotská, L. Classification of the emotional states based on the EEG signal processing.
+                        </a> <span class="pub-journal">9th International Conference on Information Technology and Applications in Biomedicine.</span>
+                    </div>
+                </li>
+                <li class="pub-item">
+                    <div class="pub-year">2009</div>
+                    <div class="pub-content">
+                        <a class="pub-link" href="https://scholar.google.com/scholar?q=The%20EEG%20Correlates%20of%20the%20Allocentric%20and%20the%20Egocentric%20Spatial%20Reference%20Frames%20Processing%20Vavrecka" target="_blank">
+                            <strong>Vavrečka, M.</strong> The EEG Correlates of the Allocentric and the Egocentric Spatial Reference Frames Processing.
+                        </a> <span class="pub-journal">World Congress on Medical Physics and Biomedical Engineering, 2295-2299.</span>
+                    </div>
+                </li>
+                <li class="pub-item">
+                    <div class="pub-year">2009</div>
+                    <div class="pub-content">
+                        <a class="pub-link" href="https://scholar.google.com/scholar?q=The%20EEG%20activity%20within%20the%20spatial%20navigation%20Vavrecka" target="_blank">
+                            <strong>Vavrečka, M.</strong> The EEG activity within the spatial navigation.
+                        </a> <span class="pub-journal">Kognice a umělý život IX, 341-350.</span>
+                    </div>
+                </li>
+                <li class="pub-item">
+                    <div class="pub-year">2008</div>
+                    <div class="pub-content">
+                        <a class="pub-link" href="https://scholar.google.com/scholar?q=Spatial%20frames%20of%20reference%20processing%20and%20its%20EEG%20correlates%20Vavrecka" target="_blank">
+                            <strong>Vavrečka, M.</strong> Spatial frames of reference processing and its EEG correlates.
+                        </a> <span class="pub-journal">55. společný sjezd české a slovenské společnosti klinické neurofyziologie.</span>
+                    </div>
+                </li>
+                <li class="pub-item">
+                    <div class="pub-year">2008</div>
+                    <div class="pub-content">
+                        <a class="pub-link" href="https://scholar.google.com/scholar?q=Multimodal%20representations%20for%20symbol%20grounding%20Vavrecka" target="_blank">
+                            <strong>Vavrečka, M.</strong> Multimodal representations for symbol grounding.
+                        </a> <span class="pub-journal">Kognice a umělý život VIII.</span>
+                    </div>
+                </li>
+                <li class="pub-item">
+                    <div class="pub-year">2007</div>
+                    <div class="pub-content">
+                        <a class="pub-link" href="https://scholar.google.com/scholar?q=Grounding%20of%20spatial%20terms%20Vavrecka" target="_blank">
+                            <strong>Vavrečka, M.</strong> Grounding of spatial terms.
+                        </a> <span class="pub-journal">Kognice a umělý život VII, 365-377.</span>
+                    </div>
+                </li>
+                <li class="pub-item">
+                    <div class="pub-year">2006</div>
+                    <div class="pub-content">
+                        <a class="pub-link" href="https://scholar.google.com/scholar?q=Symbol%20grounding%20in%20context%20of%20zero%20semantic%20commitment%20Vavrecka" target="_blank">
+                            <strong>Vavrečka, M.</strong> Symbol grounding in context of zero semantic commitment.
+                        </a> <span class="pub-journal">Kognice a umělý život VI, 401-411.</span>
+                    </div>
+                </li>
+                <li class="pub-item">
+                    <div class="pub-year">2006</div>
+                    <div class="pub-content">
+                        <a class="pub-link" href="https://scholar.google.com/scholar?q=How%20long-term%20presentation%20of%20text%20stimuli%20affects%20production%20and%20perception%20Vavrecka" target="_blank">
+                            <strong>Vavrečka, M.</strong> How long-term presentation of text stimuli affects production and perception of visual mental images.
+                        </a> <span class="pub-journal">Kognice 2006, 150-158.</span>
+                    </div>
+                </li>
+            </ul>
+        </section>
+
+        <footer>
+            <p>&copy; 2025 Mgr. Michal Vavrečka, Ph.D. | Developmental Robotics Research</p>
+        </footer>
+
+    </div>
+</body>
+</html>
