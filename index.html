@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Michal Vavrečka - Personal Web</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧠</text></svg>">
     <!-- Google Fonts: Inter for a lightweight, modern look -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -55,7 +56,7 @@
         }
 
         h1 {
-            font-size: 2.5rem;
+            font-size: 4rem;
             margin-bottom: 0.5rem;
             font-weight: 200;
         }
@@ -129,6 +130,11 @@
             gap: 50px;
             padding: 60px 0;
             border-bottom: 1px solid var(--border-color);
+        }
+
+        .hero-text {
+            text-align: center;
+            flex: 1;
         }
 
         .profile-img {
@@ -418,14 +424,14 @@
                 <img src="./images/cv_foto.jpg" alt="Michal Vavrečka">
             </div>
             <div class="hero-text">
-                <h1>Mgr. Michal Vavrečka, Ph.D.</h1>
+                <h1>Michal Vavrečka</h1>
                 <span class="subtitle">Developmental Robotics Researcher</span>
                 <div class="contact-info">
                     Czech Institute of Informatics, Robotics and Cybernetics (CIIRC)<br>
                     CTU in Prague, Jugoslávských partyzánů 1580/3, 160 00 Prague 6<br><br>
-                    <a href="mailto:michal.vavrecka@cvut.cz">michal.vavrecka@cvut.cz</a> | +420 608 661 977<br>
-                    <a href="https://michalvavrecka.github.io">michalvavrecka.github.io</a> | 
-                    <a href="#">GitHub</a> | <a href="#">LinkedIn</a>
+                    <a href="mailto:michal.vavrecka@cvut.cz">michal.vavrecka@cvut.cz</a> |<a href="https://wa.me/420608661977">+420 608 661 977</a> <br>
+                    <a href="https://michalvavrecka.github.io">Web</a> | 
+                    <a href="https://github.com/michalvavrecka">GitHub</a> | <a href="https://www.linkedin.com/in/michal-vavrecka-3072529/">LinkedIn</a>| <a href="./articles/MichalVavrecka_CV2025_ENG.pdf">CV</a>
                 </div>
             </div>
         </header>
@@ -530,7 +536,7 @@
 
         <!-- Founded Labs -->
         <section id="labs">
-            <h2>Founded Laboratories</h2>
+            <h2>Founded Labs</h2>
             <div class="card-grid">
                 <div class="card">
                     <div class="video-container">
@@ -545,8 +551,8 @@
                 </div>
                     <div class="card-body">
                         <span class="card-meta">2014</span>
-                        <h3>Incognite Lab</h3>
-                        <p>The laboratory focuses on research in developmental robotics. It develops software for training humanoid robots, such as myGym and PRAG.</p>
+                        <h3><a href="https://incognite-lab.github.io/" target="_blank">Incognite Lab</a></h3>
+                        <p>We focus on the development of embodied cognitive architectures that are based on an epigenetic robotics principles. We adopt both industrial and humanoid robots to make them learn how to understand the outside world. We develop software for training humanoid robots, such as myGym and PRAG.</p>
                     </div>
                 </div>
                 <div class="card">
@@ -555,7 +561,7 @@
                     </div>
                     <div class="card-body">
                         <span class="card-meta">2012</span>
-                        <h3>Neuropsychological Lab at USB</h3>
+                        <h3><a href="https://old.pf.jcu.cz/structure/departments/kpe/neurolab/index.html" target="_blank">Neuropsychological Lab at USB</a></h3>
                         <p>Open access laboratory equipped with 64-channel EEG and eye-tracker. The laboratory serves for administering experiments in cognitive and affective neuroscience.</p>
                     </div>
                 </div>
@@ -572,8 +578,8 @@
                 </div>
                     <div class="card-body">
                         <span class="card-meta">2009</span>
-                        <h3>EEG Lab at FEE CTU</h3>
-                        <p>Laboratory designed for experiments focused primarily on spatial cognition.</p>
+                        <h3><a href="https://www.ciirc.cvut.cz/teams-labs/cogsys/" target="_blank">EEG Lab at FEE CTU</a></h3>
+                        <p>Research laboratory dedicated to investigating spatial cognition with a particular emphasis on reference frames and neural representations of space. The lab is equipped for EEG-based experiments that study how the human brain processes, integrates, and switches between different spatial reference frames during perception, movement, and interaction with the environment.</p>
                     </div>
                 </div>
             </div>
@@ -581,7 +587,7 @@
 
         <!-- Projects -->
         <section id="projects">
-            <h2>Projects & Grants</h2>
+            <h2>Projects</h2>
             <div class="card-grid">
                 <!-- Existing Projects -->
                 <div class="card">
@@ -597,8 +603,8 @@
                 </div>
                     <div class="card-body">
                         <span class="card-meta">2023-2025</span>
-                        <h3>iChores</h3>
-                        <p>Creation of an architecture for a humanoid robot enabling control via language instructions and gestures.</p>
+                        <h3><a href="http://ichores.ciirc.cvut.cz/" target="_blank">iChores</a></h3>
+                        <p>This European project focuses on investigating the methods that enable a collaborative robot to extract task‑relevant information from the gaze and gestures of a human partner, and how gaze, gesture, and speech information can be combined for a more natural and intuitive interface.</p>
                     </div>
                 </div>
                 <div class="card">
@@ -614,8 +620,8 @@
                 </div>
                     <div class="card-body">
                         <span class="card-meta">2022-2025</span>
-                        <h3>TERAIS</h3>
-                        <p>Project focused on twinning cooperation with the University of Hamburg and IIT Genoa in the field of cognitive robotics.</p>
+                        <h3><a href="https://terais.eu/" target="_blank">TERAIS</a></h3>
+                        <p>TERAIS (Towards Excellent Robotics and Artificial Intelligence at a Slovak University) is an international project aimed at establishing the Department of Applied Informatics of Comenius University Bratislava. Funded by the Horizon Europe programme under the Twinning call, TERAIS brings together experts from the University of Hamburg in Germany and the Italian Institute of Technology in Genoa to collaborate with scientists at DAI</p>
                     </div>
                 </div>
                 <div class="card">
@@ -624,8 +630,8 @@
                     </div>
                     <div class="card-body">
                         <span class="card-meta">2021-2024</span>
-                        <h3>MIRRACLE</h3>
-                        <p>Research on multimodal representations of robotic actions and tasks applied to imitation learning.</p>
+                        <h3><a href="http://imitrob.ciirc.cvut.cz/projects/mirracle/index.html" target="_blank">MIRRACLE</a></h3>
+                        <p>The goal of the project is to design a mapping algorithm that will enable us to create such a multimodal representation of actions that incorporates prior knowledge about the uncertainty of different domains, and show how this can be used to ease teaching robotic actions and generalize them to new embodiments (e.g. different robots, grippers, etc.) and environment.</p>
                     </div>
                 </div>
                 <div class="card">
@@ -641,8 +647,8 @@
                 </div>
                     <div class="card-body">
                         <span class="card-meta">2019-2021</span>
-                        <h3>HUMR</h3>
-                        <p>Using the humanoid robot Pepper for activation and cognitive training of seniors.</p>
+                        <h3><a href="https://www.fss.muni.cz/vyzkum/resene-projekty/43869" target="_blank">HUMR</a></h3>
+                        <p>The project focuses on researching the social and technological aspects of the relationship between an elderly human user and the humanoid robot Pepper (human - robot interaction; HRI). The possibilities of using the robot to activate seniors in leisure centers for seniors are being explored.</p>
                     </div>
                 </div>
                 <div class="card">
@@ -658,8 +664,8 @@
                 </div>
                     <div class="card-body">
                         <span class="card-meta">2019-2021</span>
-                        <h3>Tradr</h3>
-                        <p>Rescue robot for deployment in difficult conditions.</p>
+                        <h3><a href="https://www.tradr-project.eu/" target="_blank">Tradr</a></h3>
+                        <p>TRADR is an integrated european research project in the area of robot-assisted disaster response. Using a proven-in-practice user-centric design methodology, TRADR develops novel science and technology for human-robot teams to assist in urban search and rescue disaster response efforts, which stretch over multiple sorties in missions that may take several days or weeks.</p>
                     </div>
                 </div>
                 <div class="card">
@@ -675,10 +681,31 @@
                 </div>
                     <div class="card-body">
                         <span class="card-meta">2014-2017</span>
-                        <h3>Robotic Homunculus</h3>
+                        <h3><a href="https://cyber.felk.cvut.cz/news/new-gacr-expro-project/" target="_blank">Robotic Homunculus</a></h3>
                         <p>Inspired by the biological somatosensory cortex, this project uses the iCub humanoid robot equipped with artificial skin. It investigates how the robot can autonomously learn a representation of its own body surface (a "robotic homunculus") through tactile stimulation and self-organizing maps.</p>
                     </div>
                 </div>
+                <div class="card">
+                   <div class="image-container">
+                        <img src="./images/vireas.png" alt="VIREAS">
+                    </div>
+                    <div class="card-body">
+                        <span class="card-meta">2010-2014</span>
+                        <h3><a href="https://vireas.cz/" target="_blank">VIREAS</a></h3>
+                        <p>VIREAS software – Virtual Experience Kit – was developed based on a series of tests and studies among residents of a nursing home. The kit includes three virtual experiences: “Walk in the Forest”, “Walk in the City Center” and “Travel”. The interactive design combines computer graphics and 360° photography. The kit is designed to positively influence the self-expression and self-confidence of seniors, motivate them and stimulate their curiosity. </p>
+                    </div>
+                </div>
+                <div class="card">
+                     <div class="image-container">
+                        <img src="./images/vrbone.jpeg" alt="VR Bone Assembly 2.0">
+                    </div>
+                    <div class="card-body">
+                         <span class="card-meta">2015-2017</span>
+                        <h3><a href="https://github.com/incognite-lab/" target="_blank">VR Bone Assembly 2.0</a></h3>
+                        <p>VR Bone Assembly 2.0 is an immersive educational software designed for medical students that uses virtual reality to teach human skeletal anatomy through interactive, hands-on learning. The application allows users to assemble and explore bones in a realistic 3D environment, improving spatial understanding and anatomical accuracy while reinforcing theoretical knowledge through practical engagement.</p>
+                    </div>
+                </div>
+                
                 <div class="card">
                 <div class="video-container">
                     <video
@@ -692,8 +719,8 @@
                 </div>
                 <div class="card-body">
                         <span class="card-meta">2012-2015</span>
-                        <h3>CloPeMa</h3>
-                        <p>Clothes recognition and folding using a dual-arm robot.</p>
+                        <h3><a href="https://robotics.iti.gr/en/clopema-2/" target="_blank">CloPeMa</a></h3>
+                        <p>CloPeMa aims to advance the state of the art in the autonomous perception and manipulation of all kinds of fabrics, textiles and garments. Various garments will be presented in a random pile on an arbitrary background and novel ways of manipulating them (sorting, folding, etc.) will be learned on demand in a real-life dynamic environment.</p>
                 </div>
                 </div>
                 <!-- New Projects (From Wix) -->
@@ -712,10 +739,10 @@
                 </div>
                     <div class="card-body">
                         <span class="card-meta">2012-2016</span>
-                        <h3>Ripley Robot</h3>
-                        <p>A cognitive robotics project utilizing the Ripley robot, a 7-DOF manipulator with rich sensory capabilities (vision, audio, touch). The research focuses on grounding natural language semantics in perception and action, enabling collaborative tasks through spoken dialogue and interactive learning.</p>
+                        <h3><a href="https://drnikolaosmavridis.com/ripley-project.php" target="_blank">Ripley Robot</a></h3>
+                        <p>Extension of Ripley robot cognitive architecture from Nikos Mavridis (MIT). A cognitive robotics project utilizing a 7-DOF manipulator with rich sensory capabilities (vision, audio, touch). The research focuses on grounding natural language semantics in perception and action, enabling collaborative tasks through spoken dialogue and interactive learning.</p>
                     </div>
-                </div>
+                    </div>
 
 
 
@@ -732,8 +759,25 @@
                 </div>
                     <div class="card-body">
                         <span class="card-meta">2011-2014</span>
-                        <h3>Affective Neuroscience</h3>
+                        <h3><a href="https://scholar.google.com/citations?view_op=view_citation&hl=cs&user=AhgkbbIAAAAJ&citation_for_view=AhgkbbIAAAAJ:_FxGoFyzp5QC" target="_blank">Affective Neuroscience</a></h3>
                         <p>Neuropsychological research focused on classifying human emotional states using EEG analysis. By presenting affective stimuli (such as IAPS images), the project aims to identify specific neural correlates and feature patterns associated with different emotional responses.</p>
+                    </div>
+                </div>
+                <div class="card">
+                   <div class="video-container">
+                    <video
+                    controls
+                    playsinline
+                    preload="metadata"
+                    width="100%"
+    >
+                    <source src="./videos/neurofeedback.mp4" type="video/mp4">
+                 </video>
+                </div>
+                    <div class="card-body">
+                        <span class="card-meta">2010-2014</span>
+                        <h3><a href="https://github.com/incognite-lab/" target="_blank">Neurofeedback Software</a></h3>
+                        <p>In this projekct we developed applications for EEG-based neurofeedback that strongly emphasize gamification to enhance user engagement and learning outcomes. By integrating game-like mechanics such as real-time feedback, goals, rewards, and adaptive challenges, the software transforms neural self-regulation tasks into interactive experiences while maintaining rigorous experimental and clinical relevance.</p>
                     </div>
                 </div>
                 <div class="card">
@@ -749,7 +793,7 @@
                 </div>
                     <div class="card-body">
                         <span class="card-meta">2008-2014</span>
-                        <h3>Spatial Cognition</h3>
+                        <h3><a href="https://michalvavrecka.github.io/articles/vavrecka_visneuro2012.pdf" target="_blank">Spatial Cognition</a></h3>
                         <p>An EEG-based study investigating how the human brain processes spatial information during navigation. The research differentiates between allocentric (world-centered) and egocentric (body-centered) reference frames using data from virtual environment tunnel tasks.</p>
                     </div>
                 </div>
@@ -760,8 +804,11 @@
                     </div>
                     <div class="card-body">
                         <span class="card-meta">2005-2007</span>
-                        <h3>One week continuos stay in VR</h3>
-                        <p>Research conducted in the context of isolation experiments (analogous to space missions). It explores the psychological effects of long-term confinement and evaluates the effectiveness of Virtual Reality environments as a countermeasure for maintaining cognitive health and well-being.</p>
+                        <h3><a href="https://michalvavrecka.github.io/articles/vavrecka_kog2006.pdf" target="_blank">One week continuos stay in VR</a></h3>
+                        <p>The presented paper contains results of pilot study in the area of human computer interaction.
+The proposed design is based on a subject's stay of several days in purely symbolic (text) visual
+environment and subsequent analysis of one´s change in production and perception of visual
+mental images.</p>
                     </div>
                 </div>
                 <div class="card">
@@ -777,7 +824,7 @@
                 </div> 
                     <div class="card-body">
                         <span class="card-meta">2003-present</span>
-                        <h3>Symbol Grounding</h3>
+                        <h3><a href="https://link.springer.com/article/10.1007/s12559-013-9212-5" target="_blank">Symbol Grounding</a></h3>
                         <p>This fundamental research addresses the symbol grounding problem: how abstract symbols (like words) gain meaning through connection to physical world experiences. The project develops computational models that link linguistic inputs with sensorimotor data from robotic agents.</p>
                     </div>
                 </div>
@@ -800,8 +847,8 @@
                  </video>
                 </div>
                     <div class="card-body">
-                        <h3>PRAG</h3>
-                        <p>Procedural task generator for robotic tasks with automatic training.</p>
+                        <h3><a href="https://github.com/incognite-lab/prag" target="_blank">PRAG</a></h3>
+                        <p>Our generator takes as input user-defined sets of atomic actions, objects, and spatial predicates and outputs solvable tasks of a given length for the selected robotic environment. The generator produces solvable tasks by constraining all possible (nonsolvable) combinations by symbolic and physical validation.</p>
                     </div>
                 </div>
                 <div class="card">
@@ -816,8 +863,8 @@
                  </video>
                 </div>
                     <div class="card-body">
-                        <h3>myGym</h3>
-                        <p>Robotic simulator for training tasks using multi-policy algorithms.</p>
+                        <h3><a href="https://github.com/incognite-lab/myGym" target="_blank">myGym</a></h3>
+                        <p>myGym enables fast prototyping of RL in the area of robotic manipulation and navigation.You can train different robots, in several environments on various tasks. There is automatic evaluation and benchmark tool. From version 2.1 there is support for multi-step tasks, multi-reward training and multi-network architectures.</p>
                     </div>
                 </div>
                                 <div class="card">
@@ -832,8 +879,13 @@
                  </video>
                 </div>
                 <div class="card-body">
-                        <h3>iChores</h3>
-                        <p>Controlling the Tiago humanoid robot using language and gestures.</p>
+                        <h3><a href="https://github.com/orgs/ichores-research/repositories" target="_blank">iChores</a></h3>
+                        <p>We have developed and demonstrated a system that en-
+ables the TIAGo++ robot to understand and execute complex,
+sequential commands that combine natural language and
+multiple pointing gestures. Our approach of decomposing
+commands and using a probabilistic framework for reasoning
+has proven to be highly effective in the planning stage.</p>
                     </div>
                 </div>
                 <div class="card">
@@ -848,7 +900,7 @@
                  </video>
                 </div>
                     <div class="card-body">
-                        <h3>NicoIK</h3>
+                        <h3><a href="https://github.com/Robotics-DAI-FMFI-UK/NicoIK" target="_blank">NicoIK</a></h3>
                         <p>Inverse kinematics and automatic grasping for the Nico humanoid robot.</p>
                     </div>
                 </div>
@@ -864,24 +916,8 @@
                  </video>
                 </div>
                 <div class="card-body">
-                        <h3>Pepper Controler</h3>
+                        <h3><a href="https://github.com/incognite-lab/Pepper-Controller" target="_blank">Pepper Controler</a></h3>
                         <p>Controlling the Pepper humanoid robot using Python.</p>
-                    </div>
-                </div>
-                <div class="card">
-                   <div class="video-container">
-                    <video
-                    controls
-                    playsinline
-                    preload="metadata"
-                    width="100%"
-    >
-                    <source src="./videos/neurofeedback.mp4" type="video/mp4">
-                 </video>
-                </div>
-                    <div class="card-body">
-                        <h3>Neurofeedback Software</h3>
-                        <p>Custom-developed software applications for EEG-based neurofeedback. This tool allows users to visualize their brain activity in real-time and train self-regulation of brain functions through visual or auditory feedback loops.</p>
                     </div>
                 </div>
                 <div class="card">
@@ -896,26 +932,12 @@
                  </video>
                 </div>
                     <div class="card-body">
-                        <h3>Bioloid Toolbox</h3>
-                        <p>A specialized software control library (Matlab/Python) designed for the Robotis Bioloid robot kits. It provides an interface for researchers and students to program complex motor sequences and behaviors for modular robots.</p>
+                        <h3><a href="https://github.com/incognite-lab/Bioloid-Toolbox" target="_blank">Bioloid Toolbox</a></h3>
+                        <p>A specialized software control library (Matlab/Python) designed for the Robotis Bioloid robot kits.</p>
                     </div>
                 </div>
 
-                <div class="card">
-                    <div class="video-container">
-                            <iframe 
-                            src="https://www.youtube.com/embed/8aiSHzJrJLE?si=gOC0rL8hEgHkBPs7?autoplay=0&mute=0&loop=0&controls=1&modestbranding=1&rel=0&playsinline=1" 
-                            title="YouTube video player" 
-                            frameborder="0" 
-                            allow="accelerometer; fullscreen; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                            allowfullscreen>
-                            </iframe>
-                    </div>
-                    <div class="card-body">
-                        <h3>VR Bone Assembly 2.0</h3>
-                        <p>Educational software for medical students.</p>
-                    </div>
-                </div>
+                
             </div>
         </section>
 
@@ -929,9 +951,8 @@
                         <img src="./images/cognitivesystems.jpg" alt="Cognitive Systems">
                     </div>
                     <div class="card-body">
-                        <h3>Cognitive Systems</h3>
+                        <h3><a href="https://cw.fel.cvut.cz/b241/courses/a6m33ksy/start"_blank">Cognitive Systems</a></h3>
                         <p>Focuses on systems that can perceive, reason, learn, and interact with the environment, often drawing inspiration from biological cognitive systems.</p>
-                        <a href="https://kognice.wixsite.com/vavrecka/copy-of-autonomous-numeric-system" target="_blank" class="course-link">View Course Page &rarr;</a>
                     </div>
                 </div>
                
@@ -940,9 +961,8 @@
                         <img src="./images/cogsci.jpg" alt="Cognitive Science">
                     </div>
                     <div class="card-body">
-                        <h3>Cognitive Science</h3>
+                        <h3><a href="https://is.muni.cz/predmet/fss/podzim2009/PSY481" target="_blank">Cognitive Science</a></h3>
                         <p>An introduction to the interdisciplinary study of mind and intelligence, embracing philosophy, psychology, artificial intelligence, neuroscience, linguistics, and anthropology.</p>
-                        <a href="https://is.muni.cz/predmet/fss/podzim2009/PSY481" target="_blank" class="course-link">View Course Page &rarr;</a>
                     </div>
                 </div>
 
@@ -951,9 +971,8 @@
                         <img src="./images/metacognition.jpg" alt="Metacognition">
                     </div>
                     <div class="card-body">
-                        <h3>Metacognition</h3>
+                        <h3><a href="https://is.muni.cz/el/1423/jaro2013/PSY258/PSY258_2013.pdf?lang=cs" target="_blank">Metacognition</a></h3>
                         <p>Exploration of "thinking about thinking", including knowledge about when and how to use particular strategies for learning or problem-solving.</p>
-                        <a href="https://kognice.wixsite.com/vavrecka/copy-of-neuropsychology" target="_blank" class="course-link">View Course Page &rarr;</a>
                     </div>
                 </div>
 
@@ -962,9 +981,8 @@
                         <img src="./images/neuropsychology.jpg" alt="Neuropsychology">
                     </div>
                     <div class="card-body">
-                        <h3>Neuropsychology</h3>
+                        <h3><a href="https://www.pf.jcu.cz/cz/fakulta/katedry/katedra-psychologie" target="_blank">Neuropsychology</a></h3>
                         <p>Study of the structure and function of the brain as they relate to specific psychological processes and behaviors.</p>
-                        <a href="https://kognice.wixsite.com/vavrecka/copy-of-introduction-to-cognitive-s" target="_blank" class="course-link">View Course Page &rarr;</a>
                     </div>
                 </div>
 
@@ -973,7 +991,7 @@
                         <img src="./images/neuroinformatics.jpg" alt="Neuroinformatics">
                     </div>
                     <div class="card-body">
-                        <h3>Neuroinformatics</h3>
+                        <h3><a href="https://intranet.fel.cvut.cz/en/education/bk/predmety/54/67/p5467506.html" target="_blank">Neuroinformatics</a></h3>
                         <p>Application of computational models and analytical tools to neuroscience data, bridging the gap between neuroscience and information science.</p>
                     </div>
                 </div>
@@ -983,20 +1001,8 @@
                         <img src="./images/psychometrics.jpg" alt="Psychometrics">
                     </div>
                     <div class="card-body">
-                        <h3>Psychometrics</h3>
+                        <h3><a href="https://www.pf.jcu.cz/cz/fakulta/katedry/katedra-psychologie" target="_blank">Psychometrics</a></h3>
                         <p>The field of study concerned with the theory and technique of psychological measurement, including the measurement of knowledge, abilities, attitudes, and personality traits.</p>
-                        <a href="https://kognice.wixsite.com/vavrecka/copy-of-metacognition" target="_blank" class="course-link">View Course Page &rarr;</a>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <div class="image-container">
-                        <img src="./images/statistics.png" alt="Statistics">
-                    </div>
-                    <div class="card-body">
-                        <h3>Statistics</h3>
-                        <p>Statistical methods and analysis techniques applied to research data in cognitive science and psychology.</p>
-                        <a href="https://kognice.wixsite.com/vavrecka/copy-of-psychometrics" target="_blank" class="course-link">View Course Page &rarr;</a>
                     </div>
                 </div>
 
@@ -1029,7 +1035,7 @@
                     <div class="pub-year">2017</div>
                     <div class="pub-content">
                         <a class="pub-link" href="https://scholar.google.com/scholar?q=Robotic%20homunculus%3A%20Learning%20of%20artificial%20skin%20representation%20in%20a%20humanoid%20robot%20Vavrecka" target="_blank">
-                            Hoffmann, M., Straka, Z., Farkas, I., <strong>Vavrecka, M.</strong> & Metta, G. Robotic homunculus: Learning of artificial skin representation in a humanoid robot motivated by primary somatosensory cortex.
+                            Hoffmann, M., Straka, Z., Farkas, I., <strong>Vavrečka, M.</strong> & Metta, G. Robotic homunculus: Learning of artificial skin representation in a humanoid robot motivated by primary somatosensory cortex.
                         </a> <span class="pub-journal">IEEE Transactions on Cognitive and Developmental Systems.</span>
                     </div>
                 </li>
@@ -1069,7 +1075,7 @@
                     <div class="pub-year">2014</div>
                     <div class="pub-content">
                         <a class="pub-link" href="https://scholar.google.com/scholar?q=A%20multimodal%20connectionist%20architecture%20for%20unsupervised%20grounding%20of%20spatial%20language%20Vavrecka" target="_blank">
-                            <strong>Vavrečka, M.</strong>, & Farkaš, I. A multimodal connectionist architecture for unsupervised grounding of spatial language.
+                            <strong>Vavrecka, M.</strong>, & Farkaš, I. A multimodal connectionist architecture for unsupervised grounding of spatial language.
                         </a> <span class="pub-journal">Cognitive Computation, 6(1), 101-112.</span>
                     </div>
                 </li>
@@ -1077,7 +1083,7 @@
                     <div class="pub-year">2012</div>
                     <div class="pub-content">
                         <a class="pub-link" href="https://scholar.google.com/scholar?q=Frames%20of%20reference%20and%20their%20neural%20correlates%20within%20navigation%20in%20a%203D%20environment%20Vavrecka" target="_blank">
-                            <strong>Vavrečka, M.</strong>, Gerla, V., Lhotská, L., & Brunovský, M. Frames of reference and their neural correlates within navigation in a 3D environment.
+                            <strong>Vavrecka, M.</strong>, Gerla, V., Lhotská, L., & Brunovský, M. Frames of reference and their neural correlates within navigation in a 3D environment.
                         </a> <span class="pub-journal">Visual Neuroscience, 29(03), 183-191.</span>
                     </div>
                 </li>
@@ -1085,7 +1091,7 @@
                     <div class="pub-year">2012</div>
                     <div class="pub-content">
                         <a class="pub-link" href="https://scholar.google.com/scholar?q=Odli%C5%A1nosti%20u%C5%BE%C3%ADv%C3%A1n%C3%AD%20referen%C4%8Dn%C3%ADch%20r%C3%A1mc%C5%AF%20b%C4%9Bhem%20orientace%20v%203D%20prostoru%20Vavrecka" target="_blank">
-                            <strong>Vavrečka, M.</strong>, & Lhotská, L. Odlišnosti užívání referenčních rámců během orientace v 3D prostoru.
+                            <strong>Vavrecka, M.</strong>, & Lhotská, L. Odlišnosti užívání referenčních rámců během orientace v 3D prostoru.
                         </a> <span class="pub-journal">Linguistica ONLINE, 14, 95-100.</span>
                     </div>
                 </li>
@@ -1093,7 +1099,7 @@
                     <div class="pub-year">2012</div>
                     <div class="pub-content">
                         <a class="pub-link" href="https://scholar.google.com/scholar?q=The%20alteration%20of%20reference%20frames%20in%20a%20vertical%20navigation%20Vavrecka" target="_blank">
-                            <strong>Vavrečka, M.</strong>, & Lhotská, L. The alteration of reference frames in a vertical navigation.
+                            <strong>Vavrecka, M.</strong>, & Lhotská, L. The alteration of reference frames in a vertical navigation.
                         </a> <span class="pub-journal">Cognitive Processing, Springer Berlin.</span>
                     </div>
                 </li>
@@ -1101,7 +1107,7 @@
                     <div class="pub-year">2012</div>
                     <div class="pub-content">
                         <a class="pub-link" href="https://scholar.google.com/scholar?q=The%20inter-individual%20differences%20and%20the%20test%E2%80%93retest%20reliability%20of%20a%20EEG%20signal%20Vavrecka" target="_blank">
-                            <strong>Vavrečka, M.</strong>, Rosset, B., & Lhotská, L. The inter-individual differences and the test–retest reliability of a EEG signal.
+                            <strong>Vavrecka, M.</strong>, Rosset, B., & Lhotská, L. The inter-individual differences and the test–retest reliability of a EEG signal.
                         </a> <span class="pub-journal">Clinical Neurophysiology, 123(3).</span>
                     </div>
                 </li>
@@ -1109,7 +1115,7 @@
                     <div class="pub-year">2011</div>
                     <div class="pub-content">
                         <a class="pub-link" href="https://scholar.google.com/scholar?q=Event%20related%20spectral%20perturbations%20within%203D%20navigation%20task%20Vavrecka" target="_blank">
-                            <strong>Vavrečka, M.</strong>, & Lhotská, L. Event related spectral perturbations within 3D navigation task.
+                            <strong>Vavrecka, M.</strong>, & Lhotská, L. Event related spectral perturbations within 3D navigation task.
                         </a> <span class="pub-journal">Activitas Nervosa Superior Rediviva, 53.</span>
                     </div>
                 </li>
@@ -1117,7 +1123,7 @@
                     <div class="pub-year">2009</div>
                     <div class="pub-content">
                         <a class="pub-link" href="https://scholar.google.com/scholar?q=The%20neural%20correlates%20of%20spatial%20reference%20frames%20processing%20Vavrecka" target="_blank">
-                            <strong>Vavrečka, M.</strong> The neural correlates of spatial reference frames processing.
+                            <strong>Vavrecka, M.</strong> The neural correlates of spatial reference frames processing.
                         </a> <span class="pub-journal">Cognitive Processing, 10:2, 342-345.</span>
                     </div>
                 </li>
@@ -1145,7 +1151,7 @@
                     <div class="pub-year">2025</div>
                     <div class="pub-content">
                         <a class="pub-link" href="https://scholar.google.com/scholar?q=Robotic%20Calibration%20Based%20on%20Haptic%20Feedback%20Improves%20Sim-to-Real%20Transfer%20Vavrecka" target="_blank">
-                            Gavura, J., <strong>Vavrečka, M.</strong>, Farkaš, I., & Gäde, C. Robotic Calibration Based on Haptic Feedback Improves Sim-to-Real Transfer.
+                            Gavura, J., <strong>Vavrecka, M.</strong>, Farkaš, I., & Gäde, C. Robotic Calibration Based on Haptic Feedback Improves Sim-to-Real Transfer.
                         </a> <span class="pub-journal">International Conference on Artificial Neural Networks (ICANN), 136-148.</span>
                     </div>
                 </li>
@@ -1153,7 +1159,7 @@
                     <div class="pub-year">2025</div>
                     <div class="pub-content">
                         <a class="pub-link" href="https://scholar.google.com/scholar?q=Examining%20the%20legibility%20of%20humanoid%20robot%20arm%20movements%20Vavrecka" target="_blank">
-                            Lúčny, A., ... & <strong>Vavrečka, M.</strong> Examining the legibility of humanoid robot arm movements in a pointing task.
+                            Lúčny, A., ... & <strong>Vavrecka, M.</strong> Examining the legibility of humanoid robot arm movements in a pointing task.
                         </a> <span class="pub-journal">arXiv preprint arXiv:2508.05104.</span>
                     </div>
                 </li>
