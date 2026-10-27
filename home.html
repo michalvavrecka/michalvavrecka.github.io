@@ -1,0 +1,1046 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="theme-color" content="#101318">
+    <title>Unhošť</title>
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            background: #101318;
+            color: #f2f0ea;
+            font-family: -apple-system, Helvetica Neue, Helvetica, Arial, sans-serif;
+            -webkit-text-size-adjust: 100%;
+            -webkit-user-select: none;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        #screen {
+            height: 100%;
+            box-sizing: border-box;
+            padding: 16px 22px 12px;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-flex-direction: column;
+            flex-direction: column;
+        }
+
+        #top, #now, .label, .prow, #days, .d-temps {
+            display: -webkit-flex;
+            display: flex;
+            -webkit-flex-direction: row;
+            flex-direction: row;
+        }
+
+        #top {
+            -webkit-align-items: flex-end;
+            align-items: flex-end;
+            -webkit-justify-content: space-between;
+            justify-content: space-between;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #2c333c;
+        }
+
+        #place {
+            font-size: 30px;
+            font-weight: bold;
+            letter-spacing: -0.4px;
+            line-height: 1;
+        }
+
+        #place span {
+            font-weight: normal;
+            color: #8e96a1;
+            font-size: 18px;
+        }
+
+        #date {
+            margin-top: 6px;
+            font-size: 16px;
+            color: #8e96a1;
+        }
+
+        #clock {
+            font-size: 48px;
+            font-weight: bold;
+            letter-spacing: -1px;
+            line-height: 0.9;
+            text-align: right;
+        }
+
+        #now {
+            -webkit-align-items: center;
+            align-items: center;
+            -webkit-justify-content: space-between;
+            justify-content: space-between;
+            padding: 12px 0 10px;
+        }
+
+        #temp {
+            font-size: 92px;
+            font-weight: bold;
+            letter-spacing: -2px;
+            line-height: 0.85;
+            color: #f5b942;
+        }
+
+        #now-side {
+            width: 48%;
+            text-align: right;
+        }
+
+        #cond {
+            font-size: 28px;
+            font-weight: bold;
+            line-height: 1.1;
+        }
+
+        #meta {
+            margin-top: 6px;
+            font-size: 17px;
+            line-height: 1.35;
+            color: #a7afb8;
+            white-space: pre-line;
+        }
+
+        .block {
+            border-top: 1px solid #2c333c;
+            padding-top: 10px;
+            margin-top: 2px;
+        }
+
+        #graph {
+            -webkit-flex: 1 1 auto;
+            flex: 1 1 auto;
+            min-height: 0;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-flex-direction: column;
+            flex-direction: column;
+        }
+
+        .label {
+            -webkit-justify-content: space-between;
+            justify-content: space-between;
+            -webkit-align-items: baseline;
+            align-items: baseline;
+            font-size: 14px;
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+            color: #8e96a1;
+            margin-bottom: 6px;
+        }
+
+        .legend {
+            letter-spacing: 0;
+            text-transform: none;
+            font-size: 14px;
+        }
+
+        .swatch {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            margin: 0 4px 0 10px;
+            vertical-align: -1px;
+        }
+
+        .swatch.temp { background: #f5b942; }
+        .swatch.rain { background: #5aa7ea; }
+
+        #chart-box {
+            position: relative;
+            -webkit-flex: 1 1 auto;
+            flex: 1 1 auto;
+            min-height: 0;
+        }
+
+        #chart {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        #forecast { padding-bottom: 8px; }
+
+        #days {
+            -webkit-align-items: flex-start;
+            align-items: flex-start;
+        }
+
+        .day { width: 33.33%; }
+
+        .d-name {
+            font-size: 15px;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+            color: #8e96a1;
+        }
+
+        .d-temps {
+            -webkit-align-items: baseline;
+            align-items: baseline;
+            margin-top: 2px;
+        }
+
+        .d-max {
+            font-size: 34px;
+            font-weight: bold;
+            line-height: 1;
+        }
+
+        .d-min {
+            margin-left: 6px;
+            font-size: 20px;
+            color: #8e96a1;
+        }
+
+        .d-mm {
+            margin-top: 4px;
+            font-size: 16px;
+            color: #7eb6ea;
+        }
+
+        .d-cond {
+            margin-top: 1px;
+            font-size: 16px;
+            line-height: 1.2;
+            height: 20px;
+            overflow: hidden;
+        }
+
+        #transit, #car { padding-bottom: 4px; }
+
+        .prow {
+            -webkit-align-items: center;
+            align-items: center;
+            -webkit-justify-content: space-between;
+            justify-content: space-between;
+        }
+
+        #line {
+            display: inline-block;
+            min-width: 64px;
+            padding: 2px 12px 4px;
+            background: #1f7a45;
+            color: #ffffff;
+            font-size: 36px;
+            font-weight: bold;
+            line-height: 1.15;
+            text-align: center;
+            border-radius: 8px;
+        }
+
+        #away {
+            font-size: 26px;
+            font-weight: bold;
+            color: #f5b942;
+        }
+
+        #times {
+            margin-top: 6px;
+            font-size: 32px;
+            font-weight: bold;
+            line-height: 1.1;
+            white-space: nowrap;
+        }
+
+        #t-arrow { color: #8e96a1; }
+
+        #t-delay {
+            margin-left: 10px;
+            font-size: 22px;
+            color: #ff5a5a;
+        }
+
+        #tdetail {
+            margin-top: 3px;
+            font-size: 16px;
+            color: #c5cad1;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        #secondary {
+            margin-top: 8px;
+            padding-top: 7px;
+            border-top: 1px solid #2c333c;
+            font-size: 18px;
+            color: #c5cad1;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        #secondary:empty {
+            display: none;
+        }
+
+        #car-min {
+            font-size: 46px;
+            font-weight: bold;
+            line-height: 1;
+            letter-spacing: -1px;
+        }
+
+        #car-km {
+            font-size: 28px;
+            font-weight: bold;
+            color: #d5dbe3;
+        }
+
+        #car-via {
+            margin-top: 4px;
+            font-size: 16px;
+            color: #8e96a1;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+    </style>
+</head>
+<body>
+    <div id="screen">
+        <header id="top">
+            <div>
+                <div id="place">Unhošť <span>náměstí</span></div>
+                <div id="date">načítám…</div>
+            </div>
+            <div id="clock">--:--</div>
+        </header>
+
+        <section id="now">
+            <div id="temp">–°</div>
+            <div id="now-side">
+                <div id="cond">Počasí</div>
+                <div id="meta"></div>
+            </div>
+        </section>
+
+        <section id="graph" class="block">
+            <div class="label">
+                <span>Teplota a srážky dnes</span>
+                <span class="legend"><i class="swatch temp"></i>°C<i class="swatch rain"></i>mm</span>
+            </div>
+            <div id="chart-box"><canvas id="chart"></canvas></div>
+        </section>
+
+        <section id="forecast" class="block">
+            <div class="label"><span>Předpověď</span><span>3 dny</span></div>
+            <div id="days">
+                <div class="day">
+                    <div class="d-name" id="n0">Dnes</div>
+                    <div class="d-temps"><span class="d-max" id="a0">–°</span><span class="d-min" id="b0"></span></div>
+                    <div class="d-mm" id="p0"></div>
+                    <div class="d-cond" id="c0"></div>
+                </div>
+                <div class="day">
+                    <div class="d-name" id="n1">Zítra</div>
+                    <div class="d-temps"><span class="d-max" id="a1">–°</span><span class="d-min" id="b1"></span></div>
+                    <div class="d-mm" id="p1"></div>
+                    <div class="d-cond" id="c1"></div>
+                </div>
+                <div class="day">
+                    <div class="d-name" id="n2">Pozítří</div>
+                    <div class="d-temps"><span class="d-max" id="a2">–°</span><span class="d-min" id="b2"></span></div>
+                    <div class="d-mm" id="p2"></div>
+                    <div class="d-cond" id="c2"></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="transit" class="block">
+            <div class="label"><span>Nejbližší spoj</span><span>Unhošť, nám.</span></div>
+            <div class="prow">
+                <div id="line">–</div>
+                <div id="away"></div>
+            </div>
+            <div id="times"><span id="t-dep">–:–</span><span id="t-arrow"> → </span><span id="t-arr">–:–</span><span id="t-delay"></span></div>
+            <div id="tdetail">načítám spoj…</div>
+            <div id="secondary"></div>
+        </section>
+
+        <section id="car" class="block">
+            <div class="label"><span>Auto teď</span><span id="car-eta">U Pekáren 1, Praha</span></div>
+            <div class="prow">
+                <div id="car-min">–</div>
+                <div id="car-km"></div>
+            </div>
+            <div id="car-via">počítám trasu…</div>
+        </section>
+    </div>
+
+    <script>
+        var UNHOST = '50.08552,14.13378';
+        var VELESLAVIN = '50.095955,14.348551';
+        var MOTOL = '50.075333,14.341322';
+        var CAR_URL = 'https://router.project-osrm.org/route/v1/driving/14.13378,50.08552;14.5388112,50.0557292?overview=false&alternatives=false&steps=true';
+        var WEATHER_URL = 'https://api.open-meteo.com/v1/forecast?latitude=50.08552&longitude=14.13378&current=temperature_2m,apparent_temperature,precipitation,weather_code,wind_speed_10m&hourly=temperature_2m,precipitation&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_sum&timezone=Europe%2FPrague&forecast_days=3&wind_speed_unit=kmh';
+
+        var state = {
+            boot: 0,
+            lastH: 0,
+            hours: null,
+            today: '',
+            primary: null,
+            secondary: null,
+            transitFailed: false,
+            transitLoading: false,
+            car: null,
+            carFailed: false
+        };
+
+        var DAYS = ['neděle', 'pondělí', 'úterý', 'středa', 'čtvrtek', 'pátek', 'sobota'];
+        var MONTHS = ['ledna', 'února', 'března', 'dubna', 'května', 'června', 'července', 'srpna', 'září', 'října', 'listopadu', 'prosince'];
+
+        function pad2(n) {
+            n = Math.floor(n);
+            return (n < 10 ? '0' : '') + n;
+        }
+
+        function setText(id, value) {
+            var node = document.getElementById(id);
+            var text = value == null ? '' : String(value);
+            if (node && node.textContent !== text) node.textContent = text;
+        }
+
+        function fmtTime(d) {
+            return pad2(d.getHours()) + ':' + pad2(d.getMinutes());
+        }
+
+        function dayKey(d) {
+            return d.getFullYear() + '-' + pad2(d.getMonth() + 1) + '-' + pad2(d.getDate());
+        }
+
+        function parseUTC(s) {
+            return new Date(s);
+        }
+
+        function weatherText(code) {
+            var map = {
+                0: 'Jasno',
+                1: 'Skoro jasno',
+                2: 'Polojasno',
+                3: 'Zataženo',
+                45: 'Mlha',
+                48: 'Mlha',
+                51: 'Mrholení',
+                53: 'Mrholení',
+                55: 'Mrholení',
+                56: 'Mrznoucí mrholení',
+                57: 'Mrznoucí mrholení',
+                61: 'Slabý déšť',
+                63: 'Déšť',
+                65: 'Silný déšť',
+                66: 'Mrznoucí déšť',
+                67: 'Mrznoucí déšť',
+                71: 'Slabé sněžení',
+                73: 'Sníh',
+                75: 'Silné sněžení',
+                77: 'Sněhová zrna',
+                80: 'Přeháňky',
+                81: 'Přeháňky',
+                82: 'Silné přeháňky',
+                85: 'Sněhové přeháňky',
+                86: 'Sněhové přeháňky',
+                95: 'Bouřka',
+                96: 'Bouřka s kroupami',
+                99: 'Bouřka s kroupami'
+            };
+            if (map[code] != null) return map[code];
+            return 'Počasí';
+        }
+
+        function fmtMm(n) {
+            if (n == null || isNaN(n)) return '–';
+            if (Math.abs(n) < 0.05) return '0 mm';
+            var text = n < 10 ? n.toFixed(1) : String(Math.round(n));
+            return text.replace('.', ',') + ' mm';
+        }
+
+        function fmtDur(min) {
+            min = Math.round(min);
+            if (min < 0) min = 0;
+            if (min < 60) return min + ' min';
+            var h = Math.floor(min / 60);
+            var m = min % 60;
+            if (m === 0) return h + ' h';
+            return h + ' h ' + m + ' min';
+        }
+
+        function relMin(dep, now) {
+            var m = Math.round((dep.getTime() - now.getTime()) / 60000);
+            if (m < -1) return 'odjel';
+            if (m <= 0) return 'jede';
+            if (m === 1) return 'za 1 min';
+            if (m < 60) return 'za ' + m + ' min';
+            return 'za ' + fmtDur(m);
+        }
+
+        function transferWord(n) {
+            if (n <= 0) return 'přímý';
+            if (n === 1) return '1 přestup';
+            if (n < 5) return n + ' přestupy';
+            return n + ' přestupů';
+        }
+
+        function getJSON(url, ok, err) {
+            var xhr = new XMLHttpRequest();
+            var finished = false;
+            function finish(success, payload) {
+                if (finished) return;
+                finished = true;
+                if (success) ok(payload);
+                else if (err) err(payload);
+            }
+            xhr.open('GET', url, true);
+            try { xhr.timeout = 18000; } catch (e) {}
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState !== 4) return;
+                if (xhr.status >= 200 && xhr.status < 300) {
+                    try {
+                        finish(true, JSON.parse(xhr.responseText));
+                    } catch (ex) {
+                        finish(false, ex);
+                    }
+                } else {
+                    finish(false, new Error('http'));
+                }
+            };
+            xhr.onerror = function () { finish(false, new Error('network')); };
+            xhr.ontimeout = function () { finish(false, new Error('timeout')); };
+            xhr.send(null);
+        }
+
+        function planUrl(toPlace) {
+            return 'https://api.transitous.org/api/v1/plan?fromPlace=' + UNHOST +
+                '&toPlace=' + toPlace +
+                '&numItineraries=3&maxMatchingDistance=120';
+        }
+
+        function fit() {
+            var h = window.innerHeight || document.documentElement.clientHeight || 1024;
+            state.lastH = h;
+            document.documentElement.style.height = h + 'px';
+            document.body.style.height = h + 'px';
+            drawChart();
+        }
+
+        function renderClock(now) {
+            setText('clock', fmtTime(now));
+            setText('date', DAYS[now.getDay()] + ' ' + now.getDate() + '. ' + MONTHS[now.getMonth()]);
+        }
+
+        function renderWeather() {
+            var data = state.weather;
+            if (!data || !data.current) return;
+            var cur = data.current;
+            var temp = Math.round(cur.temperature_2m);
+            var feel = Math.round(cur.apparent_temperature);
+            var lines = [];
+            setText('temp', temp + '°');
+            setText('cond', weatherText(cur.weather_code));
+            if (feel !== temp) lines.push('pocitově ' + feel + '°');
+            lines.push('vítr ' + Math.round(cur.wind_speed_10m) + ' km/h');
+            if (cur.precipitation != null && cur.precipitation >= 0.05) lines.push('srážky ' + fmtMm(cur.precipitation));
+            else lines.push('bez srážek');
+            setText('meta', lines.join('\n'));
+
+            var daily = data.daily;
+            if (!daily || !daily.time) return;
+            var i, label, dt, parts;
+            for (i = 0; i < 3; i++) {
+                if (!daily.time[i]) continue;
+                if (i === 0) label = 'Dnes';
+                else if (i === 1) label = 'Zítra';
+                else {
+                    parts = daily.time[i].split('-');
+                    dt = new Date(parseInt(parts[0], 10), parseInt(parts[1], 10) - 1, parseInt(parts[2], 10));
+                    label = DAYS[dt.getDay()];
+                }
+                setText('n' + i, label);
+                setText('a' + i, Math.round(daily.temperature_2m_max[i]) + '°');
+                setText('b' + i, '/ ' + Math.round(daily.temperature_2m_min[i]) + '°');
+                setText('p' + i, fmtMm(daily.precipitation_sum[i]));
+                setText('c' + i, weatherText(daily.weather_code[i]));
+            }
+        }
+
+        function drawChart() {
+            var canvas = document.getElementById('chart');
+            var box = document.getElementById('chart-box');
+            if (!canvas || !box) return;
+            var cssW = box.clientWidth;
+            var cssH = box.clientHeight;
+            if (cssW < 20 || cssH < 20) return;
+            var dpr = window.devicePixelRatio || 1;
+            if (dpr > 2) dpr = 2;
+            var bw = Math.round(cssW * dpr);
+            var bh = Math.round(cssH * dpr);
+            if (canvas.width !== bw) canvas.width = bw;
+            if (canvas.height !== bh) canvas.height = bh;
+            var ctx = canvas.getContext('2d');
+            ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+            ctx.clearRect(0, 0, cssW, cssH);
+
+            var hours = state.hours;
+            ctx.font = '15px Helvetica, Arial, sans-serif';
+            if (!hours || !hours.length) {
+                ctx.fillStyle = '#8e96a1';
+                ctx.textBaseline = 'top';
+                ctx.fillText(state.weatherFailed ? 'Graf se nepodařilo načíst' : 'Načítám graf…', 4, 8);
+                return;
+            }
+
+            var left = 44;
+            var right = 34;
+            var top = 8;
+            var bottom = cssH - 22;
+            var plotW = cssW - left - right;
+            var plotH = bottom - top;
+            if (plotW < 20 || plotH < 20) return;
+
+            var tmin = hours[0].temp;
+            var tmax = tmin;
+            var pmax = 0;
+            var i, h;
+            for (i = 0; i < hours.length; i++) {
+                h = hours[i];
+                if (h.temp < tmin) tmin = h.temp;
+                if (h.temp > tmax) tmax = h.temp;
+                if (h.prec > pmax) pmax = h.prec;
+            }
+            tmin = Math.floor(tmin) - 1;
+            tmax = Math.ceil(tmax) + 1;
+            if (tmax <= tmin) tmax = tmin + 4;
+            if (pmax <= 1) pmax = 1;
+            else pmax = Math.ceil(pmax);
+
+            function xAt(hourFloat) {
+                return left + (hourFloat / 24) * plotW;
+            }
+            function yT(v) {
+                return top + (tmax - v) / (tmax - tmin) * plotH;
+            }
+            function yP(v) {
+                return bottom - (v / pmax) * plotH;
+            }
+
+            ctx.textBaseline = 'middle';
+            ctx.lineWidth = 1;
+            var steps = 3;
+            var g, val, y;
+            for (g = 0; g <= steps; g++) {
+                val = tmin + (tmax - tmin) * (g / steps);
+                y = yT(val);
+                ctx.strokeStyle = '#2a313b';
+                ctx.beginPath();
+                ctx.moveTo(left, Math.round(y) + 0.5);
+                ctx.lineTo(cssW - right, Math.round(y) + 0.5);
+                ctx.stroke();
+                ctx.fillStyle = '#8e96a1';
+                ctx.textAlign = 'right';
+                ctx.fillText(Math.round(val) + '°', left - 6, y);
+            }
+
+            if (hours.length) {
+                ctx.beginPath();
+                ctx.moveTo(xAt(hours[0].hour + 0.5), yT(hours[0].temp));
+                for (i = 1; i < hours.length; i++) {
+                    ctx.lineTo(xAt(hours[i].hour + 0.5), yT(hours[i].temp));
+                }
+                ctx.lineTo(xAt(hours[hours.length - 1].hour + 0.5), bottom);
+                ctx.lineTo(xAt(hours[0].hour + 0.5), bottom);
+                ctx.closePath();
+                ctx.fillStyle = 'rgba(245, 185, 66, 0.14)';
+                ctx.fill();
+            }
+
+            ctx.textAlign = 'left';
+            ctx.textBaseline = 'middle';
+            ctx.fillStyle = '#6ea0d8';
+            ctx.fillText(String(pmax), cssW - right + 6, yP(pmax));
+            ctx.fillText('0', cssW - right + 6, bottom);
+
+            var slot = plotW / 24;
+            var barW = Math.max(3, slot * 0.52);
+            for (i = 0; i < hours.length; i++) {
+                h = hours[i];
+                if (!h.prec) continue;
+                var x = xAt(h.hour + 0.5) - barW / 2;
+                var yb = yP(h.prec);
+                ctx.fillStyle = 'rgba(90, 167, 234, 0.9)';
+                ctx.fillRect(x, yb, barW, Math.max(0, bottom - yb));
+            }
+
+            ctx.beginPath();
+            ctx.strokeStyle = '#f5b942';
+            ctx.lineWidth = 2.5;
+            ctx.lineJoin = 'round';
+            ctx.lineCap = 'round';
+            for (i = 0; i < hours.length; i++) {
+                h = hours[i];
+                var px = xAt(h.hour + 0.5);
+                var py = yT(h.temp);
+                if (i === 0) ctx.moveTo(px, py);
+                else ctx.lineTo(px, py);
+            }
+            ctx.stroke();
+
+            ctx.fillStyle = '#8e96a1';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'top';
+            ctx.font = '13px Helvetica, Arial, sans-serif';
+            var marks = [0, 3, 6, 9, 12, 15, 18, 21];
+            for (i = 0; i < marks.length; i++) {
+                ctx.textAlign = marks[i] === 0 ? 'left' : 'center';
+                ctx.fillText(String(marks[i]), xAt(marks[i]), bottom + 4);
+            }
+
+            var now = new Date();
+            if (state.today && dayKey(now) === state.today) {
+                var hf = now.getHours() + now.getMinutes() / 60 + now.getSeconds() / 3600;
+                var nx = xAt(hf);
+                ctx.strokeStyle = '#f2f0ea';
+                ctx.lineWidth = 1.5;
+                ctx.beginPath();
+                ctx.moveTo(nx, top);
+                ctx.lineTo(nx, bottom);
+                ctx.stroke();
+                var curTemp = null;
+                if (hours.length === 1) curTemp = hours[0].temp;
+                else if (hf <= hours[0].hour + 0.5) curTemp = hours[0].temp;
+                else if (hf >= hours[hours.length - 1].hour + 0.5) curTemp = hours[hours.length - 1].temp;
+                else {
+                    for (i = 0; i < hours.length - 1; i++) {
+                        var x0 = hours[i].hour + 0.5;
+                        var x1 = hours[i + 1].hour + 0.5;
+                        if (hf >= x0 && hf <= x1) {
+                            curTemp = hours[i].temp + (hours[i + 1].temp - hours[i].temp) * ((hf - x0) / (x1 - x0));
+                            break;
+                        }
+                    }
+                }
+                if (curTemp != null) {
+                    ctx.beginPath();
+                    ctx.fillStyle = '#f5b942';
+                    ctx.arc(nx, yT(curTemp), 4, 0, Math.PI * 2, false);
+                    ctx.fill();
+                }
+            }
+        }
+
+        function loadWeather() {
+            getJSON(WEATHER_URL, function (data) {
+                state.weather = data;
+                state.weatherFailed = false;
+                var today = data.current && data.current.time ? data.current.time.split('T')[0] : '';
+                state.today = today;
+                var times = data.hourly && data.hourly.time ? data.hourly.time : [];
+                var temps = data.hourly.temperature_2m || [];
+                var precs = data.hourly.precipitation || [];
+                var out = [];
+                var i, parts, hour;
+                for (i = 0; i < times.length; i++) {
+                    if (today && times[i].indexOf(today) !== 0) continue;
+                    parts = times[i].split('T');
+                    hour = parseInt(parts[1].split(':')[0], 10);
+                    out.push({
+                        hour: hour,
+                        temp: temps[i],
+                        prec: precs[i] || 0
+                    });
+                }
+                state.hours = out;
+                renderWeather();
+                drawChart();
+            }, function () {
+                state.weatherFailed = !state.weather;
+                if (!state.weather) {
+                    setText('cond', 'Nedostupné');
+                    setText('meta', 'Počasí se nepodařilo načíst');
+                    drawChart();
+                }
+            });
+        }
+
+        function connectionsFrom(plan, destShort, destLong) {
+            var list = plan && plan.itineraries ? plan.itineraries : [];
+            var out = [];
+            var i, j, itin, raw, legs, leg, first, last, from, depStr, arrStr, schedStr;
+            var names, cancelled, item, dep, scheduled;
+            for (i = 0; i < list.length; i++) {
+                itin = list[i];
+                raw = itin.legs || [];
+                legs = [];
+                cancelled = false;
+                for (j = 0; j < raw.length; j++) {
+                    leg = raw[j];
+                    if (!leg.mode || leg.mode === 'WALK') continue;
+                    if (leg.cancelled) cancelled = true;
+                    legs.push(leg);
+                }
+                if (!legs.length || cancelled) continue;
+                first = legs[0];
+                last = legs[legs.length - 1];
+                from = first.from || {};
+                depStr = from.departure || first.startTime;
+                arrStr = (last.to && last.to.arrival) || last.endTime;
+                schedStr = from.scheduledDeparture || first.scheduledStartTime || depStr;
+                names = [];
+                for (j = 0; j < legs.length; j++) {
+                    names.push(legs[j].routeShortName || legs[j].displayName || legs[j].mode);
+                }
+                dep = parseUTC(depStr);
+                scheduled = parseUTC(schedStr);
+                item = {
+                    destShort: destShort,
+                    destLong: destLong,
+                    dep: dep,
+                    arr: parseUTC(arrStr),
+                    scheduled: scheduled,
+                    delay: Math.round((dep.getTime() - scheduled.getTime()) / 60000),
+                    line: names[0],
+                    lines: names.join(' → '),
+                    transfers: legs.length - 1,
+                    track: from.track || from.scheduledTrack || ''
+                };
+                out.push(item);
+            }
+            return out;
+        }
+
+        function sameDeparture(a, b) {
+            if (!a || !b) return false;
+            return a.line === b.line && Math.abs(a.dep.getTime() - b.dep.getTime()) < 90000;
+        }
+
+        function chooseConnections(toVeleslavin, toMotol) {
+            var as = connectionsFrom(toVeleslavin, 'Veleslavín', 'Nádraží Veleslavín');
+            var bs = connectionsFrom(toMotol, 'Motol', 'Nemocnice Motol');
+            var a = as.length ? as[0] : null;
+            var b = bs.length ? bs[0] : null;
+            var primary = null;
+            var other = [];
+            var i;
+            if (a && b) {
+                if (a.dep.getTime() < b.dep.getTime() || (a.dep.getTime() === b.dep.getTime() && a.arr.getTime() <= b.arr.getTime())) {
+                    primary = a;
+                    other = bs;
+                } else {
+                    primary = b;
+                    other = as;
+                }
+            } else if (a) {
+                primary = a;
+                other = bs;
+            } else if (b) {
+                primary = b;
+                other = as;
+            }
+            state.primary = primary;
+            state.secondary = null;
+            if (!primary) return;
+            for (i = 0; i < other.length; i++) {
+                if (!sameDeparture(other[i], primary)) {
+                    state.secondary = other[i];
+                    return;
+                }
+            }
+            if (other.length && other[0].destShort !== primary.destShort) state.secondary = other[0];
+        }
+
+        function detailText(c) {
+            var bits = [c.destLong, transferWord(c.transfers)];
+            var mins = Math.round((c.arr.getTime() - c.dep.getTime()) / 60000);
+            bits.push(fmtDur(mins));
+            if (c.track) bits.push('stání ' + c.track);
+            if (c.delay >= 1 || c.delay <= -1) bits.push('plán ' + fmtTime(c.scheduled));
+            return bits.join(' · ');
+        }
+
+        function delayText(min) {
+            if (min >= 1) return '+' + min + ' min';
+            if (min <= -1) return '−' + (-min) + ' min';
+            return '';
+        }
+
+        function renderTransit(now) {
+            var p = state.primary;
+            var away = document.getElementById('away');
+            var delayNode = document.getElementById('t-delay');
+            if (!p) {
+                if (state.transitFailed) setText('tdetail', 'Spoj se nepodařilo načíst');
+                return;
+            }
+            var mins = Math.round((p.dep.getTime() - now.getTime()) / 60000);
+            setText('line', p.line);
+            setText('away', relMin(p.dep, now));
+            if (away) away.style.color = mins <= 5 ? '#ff5a5a' : '#f5b942';
+            setText('t-dep', fmtTime(p.dep));
+            setText('t-arr', fmtTime(p.arr));
+            setText('t-delay', delayText(p.delay));
+            if (delayNode) delayNode.style.color = p.delay < 0 ? '#3ecf8e' : '#ff5a5a';
+            setText('tdetail', detailText(p));
+            if (state.secondary) {
+                var s = state.secondary;
+                var extra = s.delay >= 1 || s.delay <= -1 ? '  ' + delayText(s.delay) : '';
+                setText('secondary', s.lines + '   ' + s.destShort + '   ' + fmtTime(s.dep) + ' → ' + fmtTime(s.arr) + extra + '   ' + relMin(s.dep, now));
+            } else {
+                setText('secondary', '');
+            }
+        }
+
+        function loadTransit() {
+            if (state.transitLoading) return;
+            state.transitLoading = true;
+            var pending = 2;
+            var gotV = null;
+            var gotM = null;
+            function done() {
+                pending -= 1;
+                if (pending > 0) return;
+                state.transitLoading = false;
+                if (gotV || gotM) chooseConnections(gotV, gotM);
+                state.transitFailed = !state.primary;
+                renderTransit(new Date());
+            }
+            getJSON(planUrl(VELESLAVIN), function (data) { gotV = data; done(); }, function () { done(); });
+            getJSON(planUrl(MOTOL), function (data) { gotM = data; done(); }, function () { done(); });
+        }
+
+        function roadLabel(step) {
+            var ref = step.ref || '';
+            var name = step.name || '';
+            var dist = step.distance || 0;
+            if (dist < 1500) return '';
+            if (ref === 'D0' || name.indexOf('okruh') !== -1) return 'Pražský okruh';
+            if (ref === 'D6' || ref === 'D5' || ref === 'D1' || ref === 'D7') return ref;
+            if (name.indexOf('Jižní spojka') !== -1) return 'Jižní spojka';
+            if (name.indexOf('Barrandov') !== -1) return 'Barrandov';
+            if (ref === 'MO' && name) return name;
+            return '';
+        }
+
+        function viaText(route) {
+            var legs = route.legs || [];
+            var seen = {};
+            var parts = [];
+            var i, j, steps, label;
+            for (i = 0; i < legs.length; i++) {
+                steps = legs[i].steps || [];
+                for (j = 0; j < steps.length; j++) {
+                    label = roadLabel(steps[j]);
+                    if (!label || seen[label]) continue;
+                    seen[label] = 1;
+                    parts.push(label);
+                    if (parts.length >= 4) return parts.join(' · ');
+                }
+            }
+            return parts.join(' · ');
+        }
+
+        function renderCar(now) {
+            var c = state.car;
+            if (!c) {
+                if (state.carFailed) setText('car-via', 'Trasu se nepodařilo načíst');
+                return;
+            }
+            var eta = new Date(now.getTime() + c.seconds * 1000);
+            setText('car-min', c.minutes + ' min');
+            setText('car-km', c.km + ' km');
+            setText('car-eta', 'příjezd ' + fmtTime(eta));
+            setText('car-via', c.via || 'U Pekáren 1, Praha');
+        }
+
+        function loadCar() {
+            getJSON(CAR_URL, function (data) {
+                var route = data.routes && data.routes.length ? data.routes[0] : null;
+                if (!route) {
+                    state.carFailed = !state.car;
+                    renderCar(new Date());
+                    return;
+                }
+                var seconds = route.duration;
+                var km = route.distance / 1000;
+                state.car = {
+                    seconds: seconds,
+                    minutes: Math.max(1, Math.round(seconds / 60)),
+                    km: km >= 10 ? Math.round(km) : Math.round(km * 10) / 10,
+                    via: viaText(route)
+                };
+                state.carFailed = false;
+                renderCar(new Date());
+            }, function () {
+                state.carFailed = !state.car;
+                renderCar(new Date());
+            });
+        }
+
+        function tick() {
+            var now = new Date();
+            var h = window.innerHeight || 0;
+            if (h && h !== state.lastH) fit();
+            renderClock(now);
+            renderTransit(now);
+            renderCar(now);
+            if (now.getSeconds() === 0) drawChart();
+        }
+
+        function wakeup() {
+            if (Date.now() - state.boot < 4000) return;
+            loadWeather();
+            loadTransit();
+            loadCar();
+        }
+
+        function init() {
+            state.boot = Date.now();
+            fit();
+            renderClock(new Date());
+            loadWeather();
+            loadTransit();
+            loadCar();
+            setInterval(tick, 1000);
+            setInterval(loadWeather, 10 * 60 * 1000);
+            setInterval(loadTransit, 60 * 1000);
+            setInterval(loadCar, 5 * 60 * 1000);
+            window.addEventListener('resize', fit, false);
+            window.addEventListener('orientationchange', function () {
+                setTimeout(fit, 300);
+            }, false);
+            window.addEventListener('pageshow', wakeup, false);
+            document.addEventListener('touchmove', function (e) {
+                e.preventDefault();
+            }, false);
+            document.addEventListener('gesturestart', function (e) {
+                e.preventDefault();
+            }, false);
+        }
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', init, false);
+        } else {
+            init();
+        }
+    </script>
+</body>
+</html>
